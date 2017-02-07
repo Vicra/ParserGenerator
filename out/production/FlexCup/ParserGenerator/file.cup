@@ -1,0 +1,2 @@
+terminal T1,T2;
+non terminal N1, N2;

@@ -1,0 +1,14 @@
+package ParserGenerator;
+
+public enum TokenTypes {
+    RESERVED_TERMINAL,
+    RESERVED_NONTERMINAL,
+    IDENTIFIER,
+    COMMA,
+    SEMICOLON,
+    PRODUCTION_SYMBOL,
+    NEW_PRODUCTION,
+    LEFT_BRACE,
+    RIGHT_BRACE,
+    COLON
+}
