@@ -21,4 +21,11 @@ public class TokenValidations {
         }
         return false;
     }
+
+    public static boolean TokenStartsAsImportStatement(Token currentToken) {
+        if(currentToken.Type == TokenTypes.RESERVED_IMPORT){
+            return true;
+        }
+        return false;
+    }
 }

@@ -4,16 +4,18 @@ package ParserGenerator;
 import ParserGenerator.LexerComponents.Lexer;
 import ParserGenerator.LexerComponents.LexerException;
 import ParserGenerator.LexerComponents.Token;
+import ParserGenerator.SyntacticComponents.Parser;
+import ParserGenerator.TreeComponents.StatementNode;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
 public class Main {
-    static public void main(String argv[]) throws Exception {
+    public static void main(String argv[]) throws Exception {
         String cupFileContent = "";
         try{
-            File file = new File("C:\\Users\\vicra\\IdeaProjects\\FlexCup\\src\\ParserGenerator\\file.cup");
+            File file = new File( "/Users/viramirez/Documents/Compiler/ParserGenerator/src/ParserGenerator/file.cup");
             FileInputStream fis = new FileInputStream(file);
             byte[] data = new byte[(int) file.length()];
             fis.read(data);
@@ -26,13 +28,8 @@ public class Main {
         }
         //System.out.print(cupFileContent);
         Lexer lexer = new Lexer(cupFileContent);
-        ArrayList<Token> tokens = lexer.GetAllTokens();
-        for (Token iterator : tokens) {
-            System.out.print("Lexeme:" + iterator.Lexeme);
-            System.out.print(" Row:" + iterator.Row);
-            System.out.print(" Column:" + iterator.Column);
-            System.out.print(" Type:" + iterator.Type + '\n');
-        }
-
+        Parser parser = new Parser(lexer);
+        ArrayList<StatementNode> lines = parser.Parse();
+        System.out.println("naruto");
     }
 }
