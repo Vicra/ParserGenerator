@@ -7,13 +7,17 @@ import ParserGenerator.LexerComponents.TokenTypes;
 import ParserGenerator.TreeComponents.StatementNode;
 import ParserGenerator.TreeComponents.Statements.ImportStatementNode;
 import ParserGenerator.TreeComponents.Statements.PackageStatementNode;
+import ParserGenerator.TreeComponents.Statements.ProductionStatementNode;
+import ParserGenerator.TreeComponents.Statements.Productions.JavaCodePart;
+import ParserGenerator.TreeComponents.Statements.Productions.ProductionPart;
+import ParserGenerator.TreeComponents.Statements.Productions.SymbolPart;
+import ParserGenerator.TreeComponents.Statements.RightHandSideNode;
 import ParserGenerator.TreeComponents.Statements.SymbolListStatements.NonTerminalSymbolNode;
 import ParserGenerator.TreeComponents.Statements.SymbolListStatements.TerminalSymbolNode;
 import ParserGenerator.TreeComponents.Statements.UserCodeStatements.ActionCodeNode;
 import ParserGenerator.TreeComponents.Statements.UserCodeStatements.InitCodeNode;
 import ParserGenerator.TreeComponents.Statements.UserCodeStatements.ParserCodeNode;
 import ParserGenerator.TreeComponents.Statements.UserCodeStatements.ScanCodeNode;
-import sun.security.pkcs11.wrapper.CK_CREATEMUTEX;
 
 import java.util.ArrayList;
 
@@ -57,7 +61,7 @@ public class Parser {
         return returnList;
     }
 
-    private ArrayList<StatementNode> production_list() {
+    private ArrayList<StatementNode> production_list() throws SyntacticException {
         if (TokenValidations.TokenStartsAsProductionList(_currentToken)){
             StatementNode productionPart = production();
             ArrayList<StatementNode> productionList = production_list();
@@ -70,8 +74,87 @@ public class Parser {
         }
     }
 
-    private StatementNode production() {
+    private StatementNode production() throws SyntacticException {
+        Token nonterminal_id = _currentToken;
+        GoToNextToken();
+        if (_currentToken.Type != TokenTypes.SYM_PRODUCTION){
+            throw new SyntacticException("Expected colon_colon_equals token");
+        }
+        GoToNextToken();
+        ArrayList<RightHandSideNode> rightHandSideList = rhs_list();
+        if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
+            throw new SyntacticException("Expected semicolon token");
+        }
+        GoToNextToken();
 
+        return new ProductionStatementNode(nonterminal_id, rightHandSideList);
+    }
+
+    private ArrayList<RightHandSideNode> rhs_list() throws SyntacticException {
+        if (_currentToken.Type == TokenTypes.IDENTIFIER || _currentToken.Type == TokenTypes.JAVA_CODE){
+            RightHandSideNode rightHandSide = rhs();
+            ArrayList<RightHandSideNode> rightHandSideList = rightHandSide_List();
+            rightHandSideList.add(0, rightHandSide);
+            return rightHandSideList;
+        }
+        else{
+            throw new SyntacticException("Expected identifier or java code");
+        }
+    }
+
+    private ArrayList<RightHandSideNode> rightHandSide_List() throws SyntacticException {
+        if (TokenValidations.TokenIsPipe(_currentToken)){
+            GoToNextToken();
+            RightHandSideNode rightHandSide = rhs();
+            ArrayList<RightHandSideNode> rightHandSideList = rightHandSide_List();
+            rightHandSideList.add(0, rightHandSide);
+            return rightHandSideList;
+        }
+        return new ArrayList<RightHandSideNode>();
+    }
+
+    private RightHandSideNode rhs() throws SyntacticException {
+        ArrayList<ProductionPart> productionParts = prod_part_list();
+        return new RightHandSideNode(productionParts);
+    }
+
+    private ArrayList<ProductionPart> prod_part_list() throws SyntacticException {
+        if (_currentToken.Type == TokenTypes.IDENTIFIER){
+            ProductionPart productionPart = symbol_prod_part();
+            ArrayList<ProductionPart> productionParts = prod_part_list();
+            productionParts.add(0, productionPart);
+            return productionParts;
+        }
+        else if(_currentToken.Type == TokenTypes.JAVA_CODE){
+            ProductionPart productionPart = java_prod_part();
+            ArrayList<ProductionPart> productionParts = prod_part_list();
+            productionParts.add(0, productionPart);
+            return productionParts;
+        }
+        else{
+            return new ArrayList<>();
+        }
+    }
+
+    private ProductionPart java_prod_part() {
+        Token symbolToken = _currentToken;
+        GoToNextToken();
+        return new JavaCodePart(symbolToken);
+    }
+
+    private ProductionPart symbol_prod_part() throws SyntacticException {
+        Token symbolToken = _currentToken;
+        GoToNextToken();
+        if (_currentToken.Type == TokenTypes.SYM_COLON){
+            GoToNextToken();
+            if (_currentToken.Type != TokenTypes.IDENTIFIER){
+                throw new SyntacticException("Expected Identifier token");
+            }
+            Token optionalLabel = _currentToken;
+            GoToNextToken();
+            return new SymbolPart(symbolToken, optionalLabel);
+        }
+        return new SymbolPart(symbolToken);
     }
 
     private ArrayList<StatementNode> symbol_list() throws SyntacticException {
@@ -378,11 +461,12 @@ public class Parser {
             GoToNextToken();
             ArrayList<Token> multipart_id = multipart_id();
             returnPackageStatements.add(new PackageStatementNode(multipart_id));
+
+            if(_currentToken.Type != TokenTypes.SYM_SEMICOLON){
+                throw new SyntacticException("Expected semicolon token");
+            }
+            GoToNextToken();
         }
-        if(_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-            throw new SyntacticException("Expected semicolon token");
-        }
-        GoToNextToken();
         return returnPackageStatements;
     }
 

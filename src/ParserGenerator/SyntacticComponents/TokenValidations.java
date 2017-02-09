@@ -54,4 +54,11 @@ public class TokenValidations {
         }
         return false;
     }
+
+    public static boolean TokenIsPipe(Token currentToken) {
+        if (currentToken.Type == TokenTypes.SYM_PIPE){
+            return true;
+        }
+        return false;
+    }
 }
