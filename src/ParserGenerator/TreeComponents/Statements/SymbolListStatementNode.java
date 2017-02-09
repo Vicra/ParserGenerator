@@ -1,10 +1,10 @@
 package ParserGenerator.TreeComponents.Statements;
 
+import ParserGenerator.LexerComponents.Token;
 import ParserGenerator.TreeComponents.StatementNode;
 
-/**
- * Created by vicra on 2/8/2017.
- */
-public class SymbolListStatementNode extends StatementNode{
+import java.util.ArrayList;
 
+public abstract class SymbolListStatementNode extends StatementNode{
+    public ArrayList<Token> DeclaresTerm;
 }

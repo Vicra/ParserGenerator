@@ -8,7 +8,8 @@ public class ReservedWords
     {
         Hashtable<String, TokenTypes> returnHashMap = new Hashtable<>();
         returnHashMap.put("terminal", TokenTypes.RESERVED_TERMINAL);
-        returnHashMap.put("non", TokenTypes.RESERVED_NONTERMINAL);
+        returnHashMap.put("nonterminal", TokenTypes.RESERVED_NONTERMINAL);
+        returnHashMap.put("non", TokenTypes.RESERVED_NON);
         returnHashMap.put("package", TokenTypes.RESERVED_PACKAGE);
         returnHashMap.put("import", TokenTypes.RESERVED_IMPORT);
         returnHashMap.put("action", TokenTypes.RESERVED_ACTION);
@@ -21,6 +22,7 @@ public class ReservedWords
         returnHashMap.put("left", TokenTypes.RESERVED_LEFT);
         returnHashMap.put("right", TokenTypes.RESERVED_RIGHT);
         returnHashMap.put("nonassoc", TokenTypes.RESERVED_NONASSOC);
+        returnHashMap.put("code", TokenTypes.RESERVED_CODE);
 
         return returnHashMap;
     }

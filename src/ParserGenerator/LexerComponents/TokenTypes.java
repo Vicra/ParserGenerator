@@ -7,6 +7,7 @@ public enum TokenTypes {
 
     /*Reserved Words*/
     RESERVED_TERMINAL,
+    RESERVED_NON,
     RESERVED_NONTERMINAL,
     RESERVED_IMPORT,
     RESERVED_ACTION,
@@ -20,6 +21,7 @@ public enum TokenTypes {
     RESERVED_RIGHT,
     RESERVED_NONASSOC,
     RESERVED_PACKAGE,
+    RESERVED_CODE,
 
     /*Simple character symbol*/
     SYM_PIPE,

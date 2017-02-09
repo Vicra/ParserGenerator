@@ -28,4 +28,30 @@ public class TokenValidations {
         }
         return false;
     }
+
+    public static boolean TokenStartsAsCodeParts(Token currentToken) {
+        if (currentToken.Type == TokenTypes.RESERVED_ACTION ||
+            currentToken.Type == TokenTypes.RESERVED_INIT ||
+            currentToken.Type == TokenTypes.RESERVED_SCAN ||
+            currentToken.Type == TokenTypes.RESERVED_PARSER){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean TokenStartsAsSymbolList(Token currentToken) {
+        if(currentToken.Type == TokenTypes.RESERVED_TERMINAL ||
+            currentToken.Type == TokenTypes.RESERVED_NON ||
+            currentToken.Type == TokenTypes.RESERVED_NONTERMINAL){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean TokenStartsAsProductionList(Token currentToken) {
+        if (currentToken.Type == TokenTypes.IDENTIFIER){
+            return true;
+        }
+        return false;
+    }
 }
