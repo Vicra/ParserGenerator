@@ -17,8 +17,8 @@ public class Main {
     public static void main(String argv[]) throws Exception {
         String cupFileContent = "";
         try{
-            //File file = new File("C:\\Users\\vicra\\IdeaProjects\\FlexCup\\src\\ParserGenerator\\file.cup");
-            File file = new File( "/Users/viramirez/Documents/Compiler/ParserGenerator/src/ParserGenerator/file.cup");
+            File file = new File("C:\\Users\\vicra\\IdeaProjects\\FlexCup\\src\\ParserGenerator\\file.cup");
+            //File file = new File( "/Users/viramirez/Documents/Compiler/ParserGenerator/src/ParserGenerator/file.cup");
             FileInputStream fis = new FileInputStream(file);
             byte[] data = new byte[(int) file.length()];
             fis.read(data);
@@ -35,5 +35,8 @@ public class Main {
         ArrayList<StatementNode> lines = parser.Parse();
         String json = new GsonBuilder().setPrettyPrinting().create().toJson(lines);
         System.out.println(json);
+        for (StatementNode statement : lines) {
+            statement.ValidateSemantic();
+        }
     }
 }

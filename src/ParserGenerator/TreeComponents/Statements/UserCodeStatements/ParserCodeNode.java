@@ -7,4 +7,9 @@ public class ParserCodeNode extends UserCodeStatementNode {
     public ParserCodeNode(String javaCode) {
         super(javaCode);
     }
+
+    @Override
+    public void ValidateSemantic() {
+
+    }
 }

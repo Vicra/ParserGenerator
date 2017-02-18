@@ -1,0 +1,32 @@
+production_list    ::= production_list production
+                    | production
+
+production         ::= nt_id COLON_COLON_EQUALS rhs_list SEMI
+
+rhs_list           ::= rhs_list BAR rhs
+                    | rhs
+
+rhs                ::= prod_part_list PERCENT_PREC term_id
+                    | prod_part_list
+
+prod_part_list     ::= prod_part_list prod_part
+                    | empty
+
+prod_part          ::= symbol_id opt_label
+                    | CODE_STRING
+
+opt_label          ::= COLON label_id
+                    | empty
+
+multipart_id       ::= multipart_id DOT ID
+                    | ID
+
+import_id          ::= multipart_id DOT STAR
+                    | multipart_id
+
+new_term_id        ::= ID
+new_non_term_id    ::= ID
+nt_id              ::= ID
+symbol_id          ::= ID
+label_id           ::= ID
+opt_semi	       ::= SEMI | empty

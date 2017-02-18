@@ -7,4 +7,9 @@ public class ActionCodeNode extends UserCodeStatementNode {
     public ActionCodeNode(String javaCode) {
         super(javaCode);
     }
+
+    @Override
+    public void ValidateSemantic() {
+
+    }
 }

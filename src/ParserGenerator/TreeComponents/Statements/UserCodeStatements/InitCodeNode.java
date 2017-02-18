@@ -8,4 +8,9 @@ public class InitCodeNode extends UserCodeStatementNode {
     public InitCodeNode(String javaCode) {
         super(javaCode);
     }
+
+    @Override
+    public void ValidateSemantic() {
+
+    }
 }
