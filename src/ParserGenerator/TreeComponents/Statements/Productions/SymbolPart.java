@@ -5,16 +5,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class SymbolPart extends ProductionPart{
     @SerializedName("Symbol")
-    public Token Symbol;
+    public Token LeftLabel;
     @SerializedName("Optional Label")
-    public Token OptionalLabel = null;
+    public Token RightOptionalLabel = null;
 
-    public SymbolPart(Token symbol, Token optionalLabel){
-        Symbol = symbol;
-        OptionalLabel = optionalLabel;
+    public SymbolPart(Token leftLabel, Token rightOptionalLabel){
+        LeftLabel = leftLabel;
+        RightOptionalLabel = rightOptionalLabel;
     }
 
-    public SymbolPart(Token symbol){
-        Symbol = symbol;
+    public SymbolPart(Token leftLabel){
+        LeftLabel = leftLabel;
     }
 }

@@ -35,7 +35,7 @@ public class ProductionStatementNode extends StatementNode{
         for (RightHandSideNode node : RightHandSideList){
             for (ProductionPart part : node.ProductionParts){
                 if (part instanceof SymbolPart){
-                    SymbolTable.getInstance().GetType(((SymbolPart) part).Symbol.Lexeme);
+                    SymbolTable.getInstance().GetType(((SymbolPart) part).LeftLabel.Lexeme);
                 }
             }
         }

@@ -2,12 +2,10 @@ import java.util.*;
 import java_cup.runtime.*;
    
 parser code {:
-    public Hashtable<String, Integer> variables
-        = new Hashtable<String, Integer>();
+    public Hashtable<String, Integer> variables = new Hashtable<String, Integer>();
     public void report_error(String message, Object info) {
    
         StringBuilder m = new StringBuilder("Error");
-   
         if (info instanceof java_cup.runtime.Symbol) {
             java_cup.runtime.Symbol s = ((java_cup.runtime.Symbol) info);
    
@@ -17,9 +15,7 @@ parser code {:
                     m.append(", column "+(s.right+1));
             }
         }
-   
-        m.append(" : "+message);
-   
+        m.append(" : " + message);
         System.err.println(m);
     }
    
@@ -28,59 +24,33 @@ parser code {:
         System.exit(1);
     }
 :};
-   
 
-   
 terminal           SEMI, PLUS, MINUS, TIMES, DIVIDE, LPAREN, RPAREN;
 terminal Integer   NUMBER;
 terminal           EQUALS, PRINT;
 terminal String    ID;
 
-   
 non terminal Object     expr_list, expr_part;
 non terminal Integer    expr, factor, term;
-   
+
+expr_list   ::=     expr_list expr_part
+            |       expr_part;
 
 
+expr_part   ::=     PRINT expr:e SEMI {: System.out.println(e); :}
+            |       ID:i EQUALS expr:e SEMI {: variables.put(i, e); :} ;
 
 
-   expr_list ::= expr_list expr_part
-                 |expr_part;
-   
+expr        ::=     expr:e PLUS factor:f {: RESULT = e + f; :}
+            |       expr:e MINUS factor:f {: RESULT = e - f; :}
+            |       factor:f {: RESULT = f; :} ;
 
-   expr_part ::= PRINT expr:e SEMI {: System.out.println(e); :}
-                | ID:i EQUALS expr:e SEMI {: variables.put(i, e); :}
-                 ;
-   
 
-   expr      ::= expr:e PLUS factor:f
-                 {: RESULT = e + f; :}
-                 |
-                 expr:e MINUS factor:f
-                 {: RESULT = e - f; :}
-                 |
-                 factor:f
-                 {: RESULT = f; :}
-                 ;
-   
+factor      ::=     factor:f TIMES term:t {: RESULT = f * t; :}
+            |       factor:f DIVIDE term:t {: RESULT = f / t; :}
+            |       term:t {: RESULT = t; :} ;
 
-   factor    ::= factor:f TIMES term:t
-                 {: RESULT = f * t; :}
-                 |
-                     factor:f DIVIDE term:t
-                     {: RESULT = f / t; :}
-                 |
-                     term:t
-                     {: RESULT = t; :}
-                 ;
-   
 
-   ID      ::= LPAREN expr:e RPAREN
-                 {: RESULT = e; :}
-                 |
-                 NUMBER:n
-                 {: RESULT = n; :}
-                 |
-                 ID:i
-                 {: RESULT = variables.get(i); :}
-                 ;
+ID          ::=     LPAREN expr:e RPAREN {: RESULT = e; :}
+            |       NUMBER:n {: RESULT = n; :}
+            |       ID:i {: RESULT = variables.get(i); :} ;

@@ -25,7 +25,7 @@ public class SymbolTable {
 
     public BaseType GetType (String name) throws SemanticException {
         if (!_symbols.containsKey(name)){
-            throw new SemanticException("No Existe este symbolo");
+            throw new SemanticException("No Existe este symbolo: " + name);
         }
         return _symbols.get(name);
     }

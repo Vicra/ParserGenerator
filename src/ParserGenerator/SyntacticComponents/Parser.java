@@ -12,8 +12,8 @@ import ParserGenerator.TreeComponents.Statements.Productions.JavaCodePart;
 import ParserGenerator.TreeComponents.Statements.Productions.ProductionPart;
 import ParserGenerator.TreeComponents.Statements.Productions.SymbolPart;
 import ParserGenerator.TreeComponents.Statements.RightHandSideNode;
-import ParserGenerator.TreeComponents.Statements.SymbolListStatements.NonTerminalSymbolNode;
-import ParserGenerator.TreeComponents.Statements.SymbolListStatements.TerminalDeclarationSymbolNode;
+import ParserGenerator.TreeComponents.Statements.SymbolListStatements.NonTerminalDeclarationNode;
+import ParserGenerator.TreeComponents.Statements.SymbolListStatements.TerminalDeclarationNode;
 import ParserGenerator.TreeComponents.Statements.UserCodeStatements.ActionCodeNode;
 import ParserGenerator.TreeComponents.Statements.UserCodeStatements.InitCodeNode;
 import ParserGenerator.TreeComponents.Statements.UserCodeStatements.ParserCodeNode;
@@ -185,7 +185,7 @@ public class Parser {
                     throw new SyntacticException("Expected semicolon token");
                 }
                 GoToNextToken();
-                return new TerminalDeclarationSymbolNode(multiPart, declaresTerm);
+                return new TerminalDeclarationNode(multiPart, declaresTerm);
             }
             else if (nextToken.Type == TokenTypes.SYM_COMMA){
                 ArrayList<Token> declaresTerm = declares_term();
@@ -193,7 +193,7 @@ public class Parser {
                     throw new SyntacticException("Expected semicolon token");
                 }
                 GoToNextToken();
-                return new TerminalDeclarationSymbolNode(declaresTerm);
+                return new TerminalDeclarationNode(declaresTerm);
             }
             else if (nextToken.Type == TokenTypes.IDENTIFIER){
                 Token nextNextToken = _tokens.get(_position + 2);
@@ -209,7 +209,7 @@ public class Parser {
                         throw new SyntacticException("Expected semicolon token");
                     }
                     GoToNextToken();
-                    return new TerminalDeclarationSymbolNode(multiPart,declaresTerm);
+                    return new TerminalDeclarationNode(multiPart,declaresTerm);
                 }
                 else if (nextNextToken.Type == TokenTypes.SYM_SEMICOLON){
                     ArrayList<Token> multiPart = new ArrayList<>();
@@ -219,7 +219,7 @@ public class Parser {
                     GoToNextToken();
                     GoToNextToken();
                     GoToNextToken();
-                    return new TerminalDeclarationSymbolNode(multiPart, declaresTerm);
+                    return new TerminalDeclarationNode(multiPart, declaresTerm);
                 }
             }
         }
@@ -237,7 +237,7 @@ public class Parser {
                     throw new SyntacticException("Expected semicolon token");
                 }
                 GoToNextToken();
-                return new NonTerminalSymbolNode(multiPart, declaresTerm);
+                return new NonTerminalDeclarationNode(multiPart, declaresTerm);
             }
             else if (nextToken.Type == TokenTypes.SYM_COMMA){
                 ArrayList<Token> declaresTerm = declares_term();
@@ -245,7 +245,7 @@ public class Parser {
                     throw new SyntacticException("Expected semicolon token");
                 }
                 GoToNextToken();
-                return new NonTerminalSymbolNode(declaresTerm);
+                return new NonTerminalDeclarationNode(declaresTerm);
             }
             else if (nextToken.Type == TokenTypes.IDENTIFIER){
                 Token nextNextToken = _tokens.get(_position + 2);
@@ -261,7 +261,7 @@ public class Parser {
                         throw new SyntacticException("Expected semicolon token");
                     }
                     GoToNextToken();
-                    return new NonTerminalSymbolNode(multiPart, declaresTerm);
+                    return new NonTerminalDeclarationNode(multiPart, declaresTerm);
                 }
                 else if (nextNextToken.Type == TokenTypes.SYM_SEMICOLON){
                     ArrayList<Token> multiPart = new ArrayList<>();
@@ -271,7 +271,7 @@ public class Parser {
                     GoToNextToken();
                     GoToNextToken();
                     GoToNextToken();
-                    return new NonTerminalSymbolNode(multiPart, declaresTerm);
+                    return new NonTerminalDeclarationNode(multiPart, declaresTerm);
                 }
             }
         }
@@ -291,7 +291,7 @@ public class Parser {
                         throw new SyntacticException("Expected semicolon token");
                     }
                     GoToNextToken();
-                    return new NonTerminalSymbolNode(multiPart, declaresTerm);
+                    return new NonTerminalDeclarationNode(multiPart, declaresTerm);
                 }
                 else if (nextToken.Type == TokenTypes.SYM_COMMA){
                     ArrayList<Token> declaresTerm = declares_term();
@@ -299,7 +299,7 @@ public class Parser {
                         throw new SyntacticException("Expected semicolon token");
                     }
                     GoToNextToken();
-                    return new NonTerminalSymbolNode(declaresTerm);
+                    return new NonTerminalDeclarationNode(declaresTerm);
                 }
                 else if (nextToken.Type == TokenTypes.IDENTIFIER){
                     Token nextNextToken = _tokens.get(_position + 2);
@@ -315,7 +315,7 @@ public class Parser {
                             throw new SyntacticException("Expected semicolon token");
                         }
                         GoToNextToken();
-                        return new NonTerminalSymbolNode(multiPart, declaresTerm);
+                        return new NonTerminalDeclarationNode(multiPart, declaresTerm);
                     }
                     else if (nextNextToken.Type == TokenTypes.SYM_SEMICOLON){
                         ArrayList<Token> multiPart = new ArrayList<>();
@@ -325,7 +325,7 @@ public class Parser {
                         GoToNextToken();
                         GoToNextToken();
                         GoToNextToken();
-                        return new NonTerminalSymbolNode(multiPart, declaresTerm);
+                        return new NonTerminalDeclarationNode(multiPart, declaresTerm);
                     }
                 }
             }

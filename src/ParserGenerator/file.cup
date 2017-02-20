@@ -1,54 +1,21 @@
-
 terminal           SEMI, PLUS, MINUS, TIMES, DIVIDE, LPAREN, RPAREN;
 terminal Integer   NUMBER;
 terminal           EQUALS, PRINT;
 terminal String    ID;
 
-   
 non terminal Object     expr_list, expr_part;
 non terminal Integer    expr, factor, term;
 
+expr        ::=     expr:e PLUS factor:f {: RESULT = e + f; :}
+            |       expr:e MINUS factor:f {: RESULT = e - f; :}
+            |       factor:f {: RESULT = f; :} ;
 
-   expr_list ::= expr_list expr_part a b n
-                 |;
 
-   expr_part ::= ;
-   
+factor      ::=     factor:f TIMES term:t {: RESULT = f * t; :}
+            |       factor:f DIVIDE term:t {: RESULT = f / t; :}
+            |       term:t {: RESULT = t; :} ;
 
-   expr_part ::= expr_part PRINT expr:e SEMI {: System.out.println(e); :}
-                | factor:i EQUALS expr:e SEMI {: variables.put(i, e); :}
-                | ID:i EQUALS expr:e SEMI {: variables.put(i, e); :}
-                |;
-   
 
-   expr      ::= expr:e PLUS factor:f
-                 {: RESULT = e + f; :}
-                 |
-                 expr:e MINUS factor:f
-                 {: RESULT = e - f; :}
-                 |
-                 factor:f
-                 {: RESULT = f; :}
-                 ;
-   
-
-   term    ::= factor:f TIMES term:t
-                 {: RESULT = f * t; :}
-                 |
-                     factor:f DIVIDE term:t
-                     {: RESULT = f / t; :}
-                 |
-                     term:t
-                     {: RESULT = t; :}
-                 ;
-   
-
-   term      ::= LPAREN expr:e RPAREN
-                 {: RESULT = e; :}
-                 |
-                 NUMBER:n
-                 {: RESULT = n; :}
-                 |
-                 ID:i
-                 {: RESULT = variables.get(i); :}
-                 ;
+term        ::=     LPAREN expr:e RPAREN {: RESULT = e; :}
+            |       NUMBER:n {: RESULT = n; :}
+            |       ID:i {: RESULT = variables.get(i); :} ;
