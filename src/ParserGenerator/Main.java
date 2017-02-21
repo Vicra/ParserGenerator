@@ -3,14 +3,10 @@ package ParserGenerator;
 
 import Automaton.Automata;
 import ParserGenerator.LexerComponents.Lexer;
-import ParserGenerator.LexerComponents.LexerException;
-import ParserGenerator.LexerComponents.Token;
 import ParserGenerator.SyntacticComponents.Parser;
 import ParserGenerator.TreeComponents.StatementNode;
 import ParserGenerator.TreeComponents.Statements.ProductionStatementNode;
-import ParserGenerator.TreeComponents.Statements.Productions.ProductionPart;
 import com.google.gson.GsonBuilder;
-import com.google.gson.annotations.SerializedName;
 import javafx.util.Pair;
 
 import java.io.File;
@@ -34,29 +30,37 @@ public class Main {
         catch(Exception e){
             System.out.print("error:" + e.getMessage());
         }
-        //System.out.print(cupFileContent);
         Lexer lexer = new Lexer(cupFileContent);
         Parser parser = new Parser(lexer);
         ArrayList<StatementNode> statements = parser.Parse();
-        //String json = new GsonBuilder().setPrettyPrinting().create().toJson(statements);
-        //System.out.println(json);
         for (StatementNode statement : statements) {
             statement.ValidateSemantic();
         }
 
-        Hashtable<String, Pair<ArrayList<String>, ArrayList<String>>> primerosAndSegundos = new Hashtable<>();
+        Hashtable<String, ArrayList<String>> primerosProducciones = new Hashtable<>();
+        Hashtable<String, ArrayList<String>> siguientesProducciones = new Hashtable<>();
         Automata automata = new Automata(statements);
         for(int i = statements.size()-1; i>=0 ;i--) {
             StatementNode statement = statements.get(i);
             if(statement instanceof ProductionStatementNode){
                 ProductionStatementNode production = (ProductionStatementNode)statement;
-                ArrayList<String> primeros = automata.getPrimero(production);
-                primerosAndSegundos.put(production.LeftHandSide.Lexeme,
-                        new Pair<>(primeros,new ArrayList<>()));
-                System.out.println("b");
+                ArrayList<String> primeros = automata.getFirst(production.LeftHandSide.Lexeme);
+                primerosProducciones.put(production.LeftHandSide.Lexeme, primeros);
+                System.out.println("");
             }
         }
-        String primeros_segundos = new GsonBuilder().setPrettyPrinting().create().toJson(primerosAndSegundos);
-        System.out.println(primeros_segundos);
+
+        for(int i = 0 ; i<statements.size() ; i++) {
+            StatementNode statement = statements.get(i);
+            if(statement instanceof ProductionStatementNode){
+                ProductionStatementNode production = (ProductionStatementNode)statement;
+                ArrayList<String> siguientes = automata.getNext(production.LeftHandSide.Lexeme);
+                siguientesProducciones.put(production.LeftHandSide.Lexeme, siguientes);
+                System.out.println("");
+            }
+        }
+        String primeros = new GsonBuilder().setPrettyPrinting().create().toJson(primerosProducciones);
+        System.out.println(primeros);
+        System.out.println("");
     }
 }
