@@ -11,7 +11,6 @@ import ParserGenerator.TreeComponents.Statements.Productions.ProductionPart;
 import ParserGenerator.TreeComponents.Statements.Productions.SymbolPart;
 import ParserGenerator.TreeComponents.Statements.RightHandSideNode;
 
-import javax.swing.plaf.nimbus.State;
 import java.util.ArrayList;
 
 public class Automata {

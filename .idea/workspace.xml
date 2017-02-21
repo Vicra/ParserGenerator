@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0f0e853-eedb-4e50-9f39-7a63d0c364cb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/Automata.class" afterPath="$PROJECT_DIR$/out/production/FlexCup/Automaton/Automata.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/ParserGenerator/Main.class" afterPath="$PROJECT_DIR$/out/production/FlexCup/ParserGenerator/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automaton/Automata.java" afterPath="$PROJECT_DIR$/src/Automaton/Automata.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ParserGenerator/Main.java" afterPath="$PROJECT_DIR$/src/ParserGenerator/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ParserGenerator/file.cup" afterPath="$PROJECT_DIR$/src/ParserGenerator/file.cup" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,8 +24,8 @@
       <file leaf-file-name="Automata.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Automaton/Automata.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="29" column="29" lean-forward="false" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+            <state relative-caret-position="360">
+              <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#OrderStatements#0;class#Automata#0" expanded="false" />
@@ -577,12 +572,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Automaton/Automata.java</url>
-          <line>81</line>
+          <line>82</line>
           <properties />
-          <option name="timeStamp" value="87" />
+          <option name="timeStamp" value="88" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="88" />
+      <option name="time" value="89" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -976,8 +971,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Automaton/Automata.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="29" column="29" lean-forward="false" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+        <state relative-caret-position="360">
+          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#OrderStatements#0;class#Automata#0" expanded="false" />
