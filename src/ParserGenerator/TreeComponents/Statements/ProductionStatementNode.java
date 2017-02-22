@@ -1,6 +1,7 @@
 package ParserGenerator.TreeComponents.Statements;
 
 import ParserGenerator.LexerComponents.Token;
+import ParserGenerator.LexerComponents.TokenTypes;
 import ParserGenerator.SemanticComponents.SemanticException;
 import ParserGenerator.SemanticComponents.SymbolTable;
 import ParserGenerator.SemanticComponents.Types.BaseType;
@@ -23,6 +24,11 @@ public class ProductionStatementNode extends StatementNode{
 
     public ProductionStatementNode(Token leftHandSide, ArrayList<RightHandSideNode> rightHandSideList){
         LeftHandSide = leftHandSide;
+        RightHandSideList = rightHandSideList;
+    }
+
+    public ProductionStatementNode(String symbol, ArrayList<RightHandSideNode> rightHandSideList){
+        LeftHandSide = new Token(-1,-1,symbol, TokenTypes.IDENTIFIER);
         RightHandSideList = rightHandSideList;
     }
 

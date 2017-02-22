@@ -1,0 +1,58 @@
+[
+  {
+    "Production Parts": [
+      {
+        "Symbol": {
+          "Row": 4,
+          "Column": 6,
+          "Lexeme": "e",
+          "Type": "IDENTIFIER"
+        }
+      },
+      {
+        "Symbol": {
+          "Row": 4,
+          "Column": 8,
+          "Lexeme": "PLUS",
+          "Type": "IDENTIFIER"
+        }
+      },
+      {
+        "Symbol": {
+          "Row": 4,
+          "Column": 13,
+          "Lexeme": "t",
+          "Type": "IDENTIFIER"
+        }
+      }
+    ]
+  },
+  {
+    "Production Parts": [
+      {
+        "Symbol": {
+          "Row": 9,
+          "Column": 6,
+          "Lexeme": "OPEN",
+          "Type": "IDENTIFIER"
+        }
+      },
+      {
+        "Symbol": {
+          "Row": 9,
+          "Column": 11,
+          "Lexeme": "e",
+          "Type": "IDENTIFIER"
+        }
+      },
+      {
+        "Symbol": {
+          "Row": 9,
+          "Column": 13,
+          "Lexeme": "CLOSE",
+          "Type": "IDENTIFIER"
+        }
+      }
+    ]
+  }
+]

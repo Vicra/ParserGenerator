@@ -1,10 +1,11 @@
-terminal PLUS, STAR, ID, OPEN, CLOSE, ɛ;
-non terminal e, e_prime, t, t_prime, f;
+terminal LPAREN, RPAREN, ID, TIMES, PLUS;
+non terminal e,t,f;
 
 e ::= e PLUS t
     | t;
-t ::= t STAR f
-    | f;
+
+t ::= t TIMES f
+    |f;
+
 f ::= ID
-    | OPEN e CLOSE
-    | ;
+    | LPAREN e RPAREN ;
