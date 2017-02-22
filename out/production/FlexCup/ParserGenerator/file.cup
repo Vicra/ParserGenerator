@@ -1,11 +1,7 @@
-terminal LPAREN, RPAREN, ID, TIMES, PLUS;
-non terminal e,t,f;
+terminal c,d;
+non terminal S,C;
 
-e ::= e PLUS t
-    | t;
+S ::= C C;
 
-t ::= t TIMES f
-    |f;
-
-f ::= ID
-    | LPAREN e RPAREN ;
+C ::= c C
+    | d;

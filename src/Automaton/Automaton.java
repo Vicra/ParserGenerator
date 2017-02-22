@@ -16,8 +16,7 @@ import javafx.util.Pair;
 import jdk.nashorn.internal.ir.Symbol;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.*;
 
 public class Automaton {
     public ArrayList<StatementNode> Statements;
@@ -46,11 +45,58 @@ public class Automaton {
             String nextSymbol =((SymbolPart)rightHandSideNode.ProductionParts.get(detalleProduccion.puntero)).LeftLabel.Lexeme;
             if (isNonTerminalType(nextSymbol)){
                 ProductionStatementNode productionStatementNode = getProductionStatement(nextSymbol);
-                productionStatementNode.RightHandSideList
+                DetalleProduccion rootProduccion = new DetalleProduccion();
+                rootProduccion.productionStatementNode = productionStatementNode;
+                rootProduccion.conjunto = getConjunto(new ArrayList<>(Collections.singletonList("$")));
+                componenteInicial.Producciones = getClosure(rootProduccion);
+                System.out.println("b");
+                //productionStatementNode.RightHandSideList
+//                ArrayList<DetalleProduccion> producciones = new ArrayList<>();
+//                if (productionStatementNode!=null){
+//                    for(RightHandSideNode rhs : productionStatementNode.RightHandSideList){
+//                        DetalleProduccion currentProduccion = new DetalleProduccion();
+//                        currentProduccion.puntero = 0;
+//                        currentProduccion.conjunto = getConjunto(detalleProduccion.conjunto);
+//                        String key = productionStatementNode.LeftHandSide.Lexeme;
+//                        ArrayList<RightHandSideNode> rhsNodes = new ArrayList<>();
+//                        rhsNodes.add(rhs);
+//                        currentProduccion.productionStatementNode = new ProductionStatementNode(key, rhsNodes);
+//                        producciones.add(currentProduccion);
+//                    }
+//                    System.out.println("");
+//                    for (DetalleProduccion produccion : producciones){
+//
+//                    }
+//                }
             }
         }
+        System.out.println("dispense");
     }
-    
+
+    private ArrayList<DetalleProduccion> getClosure(DetalleProduccion produccionPadre) throws SemanticException {
+        ArrayList<DetalleProduccion> returnList = new ArrayList<>();
+        for (Pair<String, ArrayList<ArrayList<String>>> production : MinimizedGrammar){
+            if (production.getKey().equals(produccionPadre.productionStatementNode.LeftHandSide.Lexeme)){
+                DetalleProduccion currentDetalleProduccion = new DetalleProduccion();
+                currentDetalleProduccion.productionStatementNode = produccionPadre.productionStatementNode;
+                currentDetalleProduccion.conjunto = getConjunto(produccionPadre.conjunto);
+                String key = currentDetalleProduccion.productionStatementNode.LeftHandSide.Lexeme;
+                if(isNonTerminalType(key) && !Objects.equals(key, produccionPadre.productionStatementNode.LeftHandSide.Lexeme)){
+                    returnList.addAll(getClosure(currentDetalleProduccion));
+                }
+                else{
+                    returnList.add(currentDetalleProduccion);
+                }
+            }
+        }
+        return returnList;
+    }
+
+    private ArrayList<String> getConjunto(ArrayList<String> conjuntoPadre) {
+
+        return null;
+    }
+
     private ArrayList<Pair<String, ArrayList<ArrayList<String>>>> minimizeGrammar(ArrayList<StatementNode> statements) {
         ArrayList<Pair<String, ArrayList<ArrayList<String>>>> returnTable = new ArrayList<>();
         for (StatementNode statementNode : statements){
