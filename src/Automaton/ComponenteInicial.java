@@ -1,7 +1,5 @@
 package Automaton;
 
-import ParserGenerator.TreeComponents.Statements.ProductionStatementNode;
-
 import java.util.ArrayList;
 
 public class ComponenteInicial extends Componente{

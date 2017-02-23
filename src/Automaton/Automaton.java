@@ -1,7 +1,5 @@
 package Automaton;
 
-import ParserGenerator.LexerComponents.Token;
-import ParserGenerator.LexerComponents.TokenTypes;
 import ParserGenerator.SemanticComponents.SemanticException;
 import ParserGenerator.SemanticComponents.SymbolTable;
 import ParserGenerator.SemanticComponents.Types.BaseType;
@@ -12,10 +10,11 @@ import ParserGenerator.TreeComponents.Statements.ProductionStatementNode;
 import ParserGenerator.TreeComponents.Statements.Productions.ProductionPart;
 import ParserGenerator.TreeComponents.Statements.Productions.SymbolPart;
 import ParserGenerator.TreeComponents.Statements.RightHandSideNode;
+import com.google.gson.GsonBuilder;
 import javafx.util.Pair;
-import jdk.nashorn.internal.ir.Symbol;
-
-import java.lang.reflect.Array;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import static java.util.Arrays.asList;
@@ -29,18 +28,18 @@ public class Automaton {
     public Hashtable<String, ArrayList<String>> SecondsTable;
     private DetalleProduccion Aumentada;
     public ArrayList<State> States = new ArrayList<>();
-    int automatonSize = 1;
+    private int automatonSize = 1;
 
 
     public Automaton(ArrayList<StatementNode> statements){
         Statements = statements;
         MinimizedGrammar = minimizeGrammar(Statements);
         Aumentada = getMinimizedAumentada();
-        //Statements.add(0, Aumentada);
     }
 
-    public State GenerateFirstState() throws SemanticException {
+    public State generateFirstState() throws SemanticException {
         State initialState = new State("I0");
+        initialState.isInitialState = true;
         ComponenteInicial componenteInicial = new ComponenteInicial(Aumentada);
 
         DetalleProduccion produccionAumentada = componenteInicial.Producciones.get(0);
@@ -59,25 +58,116 @@ public class Automaton {
         return initialState;
     }
 
-    public void GenerateStates() throws SemanticException {
-        State firstState = GenerateFirstState();
+    public void generateStates() throws SemanticException, FileNotFoundException, UnsupportedEncodingException {
+        State firstState = generateFirstState();
         States.add(firstState);
-        int i = 0;
-        while(i < automatonSize)
+        int currentPosition = 0;
+        while(currentPosition < automatonSize)
         {
-            CreateNextNode(i);
-            i++;
+            createNextNode(currentPosition);
+            currentPosition++;
         }
-
+        String primeros = new GsonBuilder().setPrettyPrinting().create().toJson(States);
+        PrintWriter writer = new PrintWriter("automata.txt", "UTF-8");writer.println(primeros);writer.close();
     }
 
-    private void CreateNextNode(int position) throws SemanticException {
-        ArrayList<String> doneSymbols = new ArrayList<>();
+    private void createNextNode(int position) throws SemanticException {
+        ArrayList<String> symbols = new ArrayList<>();
         State currentState = States.get(position);
-        for(DetalleProduccion nodeLine : currentState.componente.Producciones)
-        {
-
+        for(DetalleProduccion detalleProduccion : currentState.componente.Producciones){
+            if(detalleProduccion.puntero < detalleProduccion.rhs.size()){
+                if (!symbols.contains(detalleProduccion.rhs.get(detalleProduccion.puntero))){
+                    String currentSymbol = detalleProduccion.rhs.get(detalleProduccion.puntero);
+                    State stateToCheck = goTo(currentSymbol, currentState.componente.Producciones);
+                    if (!stateExists(stateToCheck)){
+                        stateToCheck.name = getNextStateName();
+                        States.add(stateToCheck);
+                        automatonSize = States.size();
+                    }
+                    String symbolo = detalleProduccion.rhs.get(detalleProduccion.puntero);
+                    currentState.transitions.add(new Transition(symbolo,currentState.name, stateToCheck.name));
+                    symbols.add(detalleProduccion.rhs.get(detalleProduccion.puntero));
+                }
+            }
         }
+    }
+
+    private boolean stateExists(State newState){
+        for(State state : States)
+        {
+            if(statesAreEqual(state,newState))
+                return true;
+        }
+        return false;
+    }
+
+    private String getNextStateName() {
+        return "I" + automatonSize;
+    }
+
+    private boolean statesAreEqual(State state, State newState) {
+        if(state.componente.Producciones.size() != newState.componente.Producciones.size()){
+            return false;
+        }
+        else{
+            for(int i = 0; i < state.componente.Producciones.size(); i++)
+            {
+                String stateLeftKey = state.componente.Producciones.get(i).LeftSideKey;
+                String newStateLeftKey = newState.componente.Producciones.get(i).LeftSideKey;
+                if(!stateLeftKey.equals(newStateLeftKey)){
+                    return false;
+                }
+                else if(state.componente.Producciones.get(i).rhs.size() != newState.componente.Producciones.get(i).rhs.size()){
+                    return false;
+                }
+                else{
+                    ArrayList<String> arrayExistingState = new ArrayList<>(state.componente.Producciones.get(i).rhs);
+                    ArrayList<String> arrayToCheckingState = new ArrayList<>(newState.componente.Producciones.get(i).rhs);
+                    if(!arrayExistingState.equals(arrayToCheckingState))
+                        return false;
+                    if(state.componente.Producciones.get(i).puntero != newState.componente.Producciones.get(i).puntero)
+                        return false;
+                    arrayExistingState = new ArrayList<>(state.componente.Producciones.get(i).conjunto);
+                    arrayToCheckingState = new ArrayList<>(newState.componente.Producciones.get(i).conjunto);
+                    if(!arrayExistingState.equals(arrayToCheckingState))
+                        return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private State goTo(String currentSymbol, ArrayList<DetalleProduccion> producciones) throws SemanticException {
+        State newState = new State();
+        List<String> doneSymbols = new ArrayList<>();
+        for(DetalleProduccion detalleProduccion : producciones)
+        {
+            if(detalleProduccion.puntero < detalleProduccion.rhs.size())
+            {
+                if(detalleProduccion.rhs.get(detalleProduccion.puntero).equals(currentSymbol))
+                {
+                    DetalleProduccion newDetalleProduccion = new DetalleProduccion();
+                    newDetalleProduccion.LeftSideKey = detalleProduccion.LeftSideKey;
+                    newDetalleProduccion.rhs.addAll(detalleProduccion.rhs);
+                    newDetalleProduccion.puntero = detalleProduccion.puntero + 1;
+                    newDetalleProduccion.conjunto.addAll(detalleProduccion.conjunto);
+                    newState.componente.Producciones.add(newDetalleProduccion);
+                    if(newDetalleProduccion.puntero < newDetalleProduccion.rhs.size())
+                    {
+                        if(!doneSymbols.contains(newDetalleProduccion.rhs.get(newDetalleProduccion.puntero)))
+                        {
+                            String symbolPuntero = newDetalleProduccion.rhs.get(newDetalleProduccion.puntero);
+                            if(isNonTerminalType(symbolPuntero))
+                            {
+                                newState.componente.Producciones.addAll(getClosure(newDetalleProduccion));
+                                doneSymbols.add(newDetalleProduccion.rhs.get(newDetalleProduccion.puntero));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return newState;
     }
 
     private ArrayList<DetalleProduccion> getClosure(DetalleProduccion produccionPadre) throws SemanticException {
@@ -126,7 +216,7 @@ public class Automaton {
             {
                 ArrayList<String> first = getFirst(conjuntoPadre.rhs.get(puntero + i));
                 conjunto.addAll(first);
-                if(!first.contains("ɛ"))
+                if(!first.contains(EPSILON))
                 {
                     break;
                 }
@@ -144,12 +234,6 @@ public class Automaton {
         conjunto.addAll(nuevoConjunto);
         return conjunto;
 
-    }
-
-    private String getValueFromPuntero(ArrayList<String> rhs, int puntero) {
-        if (puntero > rhs.size() || puntero < 0)
-            return EPSILON;
-        return rhs.get(puntero);
     }
 
     private ArrayList<Pair<String, ArrayList<ArrayList<String>>>> minimizeGrammar(ArrayList<StatementNode> statements) {
@@ -396,17 +480,6 @@ public class Automaton {
                 return MinimizedGrammar.get(i);
         }
         return null;
-    }
-
-    public ProductionStatementNode getAumentada() {
-        String symbol = MinimizedGrammar.get(0).getKey();
-        SymbolPart part = new SymbolPart(new Token(0,0,symbol, TokenTypes.IDENTIFIER));
-        ArrayList<ProductionPart> parts = new ArrayList<>();
-        parts.add(part);
-        RightHandSideNode rightHandSideNode = new RightHandSideNode(parts);
-        ArrayList<RightHandSideNode> rightHandSideNodeArrayList = new ArrayList<>();
-        rightHandSideNodeArrayList.add(rightHandSideNode);
-        return new ProductionStatementNode("S'",rightHandSideNodeArrayList);
     }
 
     public DetalleProduccion getMinimizedAumentada() {

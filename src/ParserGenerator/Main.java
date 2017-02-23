@@ -1,20 +1,15 @@
 package ParserGenerator;
 
-
 import Automaton.Automaton;
 import ParserGenerator.LexerComponents.Lexer;
 import ParserGenerator.SyntacticComponents.Parser;
 import ParserGenerator.TreeComponents.StatementNode;
 import ParserGenerator.TreeComponents.Statements.ProductionStatementNode;
-import ParserGenerator.TreeComponents.Statements.Productions.ProductionPart;
-import ParserGenerator.TreeComponents.Statements.Productions.SymbolPart;
-import ParserGenerator.TreeComponents.Statements.RightHandSideNode;
 import com.google.gson.GsonBuilder;
-import javafx.util.Pair;
-import jdk.management.resource.internal.inst.FileOutputStreamRMHooks;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -50,7 +45,6 @@ public class Main {
                 ProductionStatementNode production = (ProductionStatementNode)statement;
                 ArrayList<String> primeros = automata.getFirst(production.LeftHandSide.Lexeme);
                 primerosProducciones.put(production.LeftHandSide.Lexeme, primeros);
-                System.out.println("");
             }
         }
 
@@ -59,40 +53,23 @@ public class Main {
             StatementNode statement = statements.get(i);
             if(statement instanceof ProductionStatementNode){
                 ProductionStatementNode production = (ProductionStatementNode)statement;
-                System.out.println(production.LeftHandSide.Lexeme);
                 ArrayList<String> siguientes = automata.getNext(production.LeftHandSide.Lexeme);
                 siguientesProducciones.put(production.LeftHandSide.Lexeme, siguientes);
-                System.out.println("");
             }
         }
         automata.FirstsTable = primerosProducciones;
         automata.SecondsTable = siguientesProducciones;
-        automata.GenerateStates();
-        System.out.println("primeros");
-        String primeros = new GsonBuilder().setPrettyPrinting().create().toJson(primerosProducciones);System.out.println(primeros);
-        System.out.println("siguientes");
-        String siguientes = new GsonBuilder().setPrettyPrinting().create().toJson(siguientesProducciones);System.out.println(siguientes);
+        automata.generateStates();
 
-    }
+        String primeros = new GsonBuilder().setPrettyPrinting().create().toJson(primerosProducciones);
+        PrintWriter writer = new PrintWriter("primeros.txt", "UTF-8");writer.println(primeros);writer.close();
 
-    private static ArrayList<Pair<String, ArrayList<ArrayList<String>>>> GenerateProductions(ArrayList<StatementNode> statements) {
-        ArrayList<Pair<String, ArrayList<ArrayList<String>>>> returnTable = new ArrayList<>();
-        for (StatementNode statementNode : statements){
-            if(statementNode instanceof ProductionStatementNode){
-                String leftName = ((ProductionStatementNode) statementNode).LeftHandSide.Lexeme;
-                ArrayList<ArrayList<String>> produccionesDerecha = new ArrayList<>();
-                for (RightHandSideNode rightHandSideNode : ((ProductionStatementNode) statementNode).RightHandSideList){
-                    ArrayList<String> parts = new ArrayList<>();
-                    for (ProductionPart productionPart : rightHandSideNode.ProductionParts){
-                        if (productionPart instanceof SymbolPart){
-                            parts.add(((SymbolPart) productionPart).LeftLabel.Lexeme);
-                        }
-                    }
-                    produccionesDerecha.add(parts);
-                }
-                returnTable.add(new Pair<>(leftName, produccionesDerecha));
-            }
-        }
-        return returnTable;
+        String siguientes = new GsonBuilder().setPrettyPrinting().create().toJson(siguientesProducciones);
+        writer = new PrintWriter("siguientes.txt", "UTF-8");writer.println(siguientes);writer.close();
+
+        System.out.println("Archivos generados: primeros.txt");
+        System.out.println("Archivos generados: siguientes.txt");
+        System.out.println("Archivos generados: automata.txt");
+
     }
 }
