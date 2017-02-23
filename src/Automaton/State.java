@@ -6,11 +6,12 @@ import java.util.ArrayList;
 
 public class State {
     public String name;
-    public ArrayList<String> transitions;
+    public ArrayList<Transition> transitions;
     public boolean isInitialState;
     public boolean isAcceptanceState;
+    public Componente componente;
 
-    public State(String name, ArrayList<String> transitions, boolean isInitialState, boolean isAcceptanceState) {
+    public State(String name, ArrayList<Transition> transitions, boolean isInitialState, boolean isAcceptanceState) {
         this.name = name;
         this.transitions = transitions;
         this.isInitialState = isInitialState;

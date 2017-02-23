@@ -18,6 +18,8 @@ import jdk.nashorn.internal.ir.Symbol;
 import java.lang.reflect.Array;
 import java.util.*;
 
+import static java.util.Arrays.asList;
+
 public class Automaton {
     public ArrayList<StatementNode> Statements;
     public ArrayList<Pair<String, ArrayList<ArrayList<String>>>> MinimizedGrammar;
@@ -25,76 +27,129 @@ public class Automaton {
     private static final String EOF = "$";
     public Hashtable<String, ArrayList<String>> FirstsTable;
     public Hashtable<String, ArrayList<String>> SecondsTable;
-    private ProductionStatementNode Aumentada;
-    public ArrayList<State> States;
+    private DetalleProduccion Aumentada;
+    public ArrayList<State> States = new ArrayList<>();
+    int automatonSize = 1;
 
 
     public Automaton(ArrayList<StatementNode> statements){
         Statements = statements;
         MinimizedGrammar = minimizeGrammar(Statements);
-        Aumentada = getAumentada();
+        Aumentada = getMinimizedAumentada();
         //Statements.add(0, Aumentada);
     }
 
-    public void GenerateStates() throws SemanticException {
+    public State GenerateFirstState() throws SemanticException {
         State initialState = new State("I0");
         ComponenteInicial componenteInicial = new ComponenteInicial(Aumentada);
 
-        DetalleProduccion detalleProduccion = componenteInicial.Producciones.get(0);
-        for (RightHandSideNode rightHandSideNode : detalleProduccion.productionStatementNode.RightHandSideList){
-            String nextSymbol =((SymbolPart)rightHandSideNode.ProductionParts.get(detalleProduccion.puntero)).LeftLabel.Lexeme;
-            if (isNonTerminalType(nextSymbol)){
-                ProductionStatementNode productionStatementNode = getProductionStatement(nextSymbol);
-                DetalleProduccion rootProduccion = new DetalleProduccion();
-                rootProduccion.productionStatementNode = productionStatementNode;
-                rootProduccion.conjunto = getConjunto(new ArrayList<>(Collections.singletonList("$")));
-                componenteInicial.Producciones = getClosure(rootProduccion);
-                System.out.println("b");
-                //productionStatementNode.RightHandSideList
-//                ArrayList<DetalleProduccion> producciones = new ArrayList<>();
-//                if (productionStatementNode!=null){
-//                    for(RightHandSideNode rhs : productionStatementNode.RightHandSideList){
-//                        DetalleProduccion currentProduccion = new DetalleProduccion();
-//                        currentProduccion.puntero = 0;
-//                        currentProduccion.conjunto = getConjunto(detalleProduccion.conjunto);
-//                        String key = productionStatementNode.LeftHandSide.Lexeme;
-//                        ArrayList<RightHandSideNode> rhsNodes = new ArrayList<>();
-//                        rhsNodes.add(rhs);
-//                        currentProduccion.productionStatementNode = new ProductionStatementNode(key, rhsNodes);
-//                        producciones.add(currentProduccion);
-//                    }
-//                    System.out.println("");
-//                    for (DetalleProduccion produccion : producciones){
-//
-//                    }
-//                }
-            }
+        DetalleProduccion produccionAumentada = componenteInicial.Producciones.get(0);
+        String simboloEnPuntero = produccionAumentada.rhs.get(produccionAumentada.puntero);
+        if (isNonTerminalType(simboloEnPuntero)){
+            Pair<String, ArrayList<ArrayList<String>>> productionStatementNode = getMinimizedProductionStatement(simboloEnPuntero);
+            DetalleProduccion rootProduccion = new DetalleProduccion();
+            rootProduccion.LeftSideKey = productionStatementNode.getKey();
+            rootProduccion.rhs = productionStatementNode.getValue().get(0);
+            ArrayList<String> conjunto = new ArrayList<>(asList("$"));
+            rootProduccion.conjunto.addAll(conjunto);
+            componenteInicial.Producciones.add(rootProduccion);
+            componenteInicial.Producciones.addAll(getClosure(componenteInicial.Producciones.get(0)));
         }
-        System.out.println("dispense");
+        initialState.componente = componenteInicial;
+        return initialState;
+    }
+
+    public void GenerateStates() throws SemanticException {
+        State firstState = GenerateFirstState();
+        States.add(firstState);
+        int i = 0;
+        while(i < automatonSize)
+        {
+            CreateNextNode(i);
+            i++;
+        }
+
+    }
+
+    private void CreateNextNode(int position) throws SemanticException {
+        ArrayList<String> doneSymbols = new ArrayList<>();
+        State currentState = States.get(position);
+        for(DetalleProduccion nodeLine : currentState.componente.Producciones)
+        {
+
+        }
     }
 
     private ArrayList<DetalleProduccion> getClosure(DetalleProduccion produccionPadre) throws SemanticException {
         ArrayList<DetalleProduccion> returnList = new ArrayList<>();
         for (Pair<String, ArrayList<ArrayList<String>>> production : MinimizedGrammar){
-            if (production.getKey().equals(produccionPadre.productionStatementNode.LeftHandSide.Lexeme)){
-                DetalleProduccion currentDetalleProduccion = new DetalleProduccion();
-                currentDetalleProduccion.productionStatementNode = produccionPadre.productionStatementNode;
-                currentDetalleProduccion.conjunto = getConjunto(produccionPadre.conjunto);
-                String key = currentDetalleProduccion.productionStatementNode.LeftHandSide.Lexeme;
-                if(isNonTerminalType(key) && !Objects.equals(key, produccionPadre.productionStatementNode.LeftHandSide.Lexeme)){
-                    returnList.addAll(getClosure(currentDetalleProduccion));
-                }
-                else{
-                    returnList.add(currentDetalleProduccion);
+            if (production.getKey().equals(produccionPadre.rhs.get(produccionPadre.puntero))){
+                for(ArrayList<String> rightSide : production.getValue()){
+                    String primerSimbolo = rightSide.get(0);
+                    if (isNonTerminalType(primerSimbolo)){
+                        if (!Objects.equals(production.getKey(), primerSimbolo)){
+                            DetalleProduccion detalle = new DetalleProduccion();
+                            detalle.LeftSideKey = production.getKey();
+                            detalle.rhs = rightSide;
+                            detalle.conjunto = getConjunto(produccionPadre);
+                            returnList.addAll(getClosure(detalle));
+                        }
+                    }
+                    else{
+                        DetalleProduccion detalle = new DetalleProduccion();
+                        detalle.LeftSideKey = production.getKey();
+                        detalle.rhs = rightSide;
+                        detalle.conjunto = getConjunto(produccionPadre);
+                        returnList.add(detalle);
+                    }
                 }
             }
         }
         return returnList;
     }
 
-    private ArrayList<String> getConjunto(ArrayList<String> conjuntoPadre) {
+    private ArrayList<String> getConjunto(DetalleProduccion conjuntoPadre) throws SemanticException {
+        ArrayList<String> conjunto = new ArrayList<>();
+        int puntero = conjuntoPadre.puntero;
+        if(puntero + 1 == conjuntoPadre.rhs.size())
+        {
+            conjunto.addAll(conjuntoPadre.conjunto);
+        }
+        else if(conjuntoPadre.rhs.get(puntero + 1).equals(EPSILON))
+        {
+            conjunto.addAll(conjuntoPadre.conjunto);
+        }
+        else
+        {
+            int i = 1;
+            while(true)
+            {
+                ArrayList<String> first = getFirst(conjuntoPadre.rhs.get(puntero + i));
+                conjunto.addAll(first);
+                if(!first.contains("ɛ"))
+                {
+                    break;
+                }
+                if(puntero + i + 1 == conjuntoPadre.rhs.size())
+                {
+                    conjunto.addAll(conjuntoPadre.conjunto);
+                    break;
+                }
+                i++;
+            }
+        }
+        Set<String> nuevoConjunto = new HashSet<>();
+        nuevoConjunto.addAll(conjunto);
+        conjunto.clear();
+        conjunto.addAll(nuevoConjunto);
+        return conjunto;
 
-        return null;
+    }
+
+    private String getValueFromPuntero(ArrayList<String> rhs, int puntero) {
+        if (puntero > rhs.size() || puntero < 0)
+            return EPSILON;
+        return rhs.get(puntero);
     }
 
     private ArrayList<Pair<String, ArrayList<ArrayList<String>>>> minimizeGrammar(ArrayList<StatementNode> statements) {
@@ -172,7 +227,7 @@ public class Automaton {
 
     public ArrayList<String> getNext(String symbol) throws SemanticException {
         ArrayList<String> NextList = new ArrayList<>();
-        if (symbol.equals(((SymbolPart)Aumentada.RightHandSideList.get(0).ProductionParts.get(0)).LeftLabel.Lexeme))
+        if (symbol.equals(Aumentada.rhs.get(0)))
             NextList.add(EOF);
         ArrayList<RightHandSideNode> rightProductionsThatContainSymbol = getRightProductionsThatContainSymbol(symbol);
         for (RightHandSideNode rhs : rightProductionsThatContainSymbol){
@@ -335,6 +390,14 @@ public class Automaton {
         return null;
     }
 
+    private Pair<String,ArrayList<ArrayList<String>>> getMinimizedProductionStatement(String id) {
+        for(int i=0; i<MinimizedGrammar.size(); i++){
+            if (MinimizedGrammar.get(i).getKey().equals(id))
+                return MinimizedGrammar.get(i);
+        }
+        return null;
+    }
+
     public ProductionStatementNode getAumentada() {
         String symbol = MinimizedGrammar.get(0).getKey();
         SymbolPart part = new SymbolPart(new Token(0,0,symbol, TokenTypes.IDENTIFIER));
@@ -344,5 +407,14 @@ public class Automaton {
         ArrayList<RightHandSideNode> rightHandSideNodeArrayList = new ArrayList<>();
         rightHandSideNodeArrayList.add(rightHandSideNode);
         return new ProductionStatementNode("S'",rightHandSideNodeArrayList);
+    }
+
+    public DetalleProduccion getMinimizedAumentada() {
+        String symbol = MinimizedGrammar.get(0).getKey();
+        DetalleProduccion detalleAumentada = new DetalleProduccion();
+        detalleAumentada.conjunto =  new ArrayList<>(Arrays.asList("$"));
+        detalleAumentada.rhs.add(symbol);
+        detalleAumentada.LeftSideKey = "S'";
+        return detalleAumentada;
     }
 }
