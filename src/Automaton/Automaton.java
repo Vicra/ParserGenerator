@@ -46,12 +46,15 @@ public class Automaton {
         String simboloEnPuntero = produccionAumentada.rhs.get(produccionAumentada.puntero);
         if (isNonTerminalType(simboloEnPuntero)){
             Pair<String, ArrayList<ArrayList<String>>> productionStatementNode = getMinimizedProductionStatement(simboloEnPuntero);
-            DetalleProduccion rootProduccion = new DetalleProduccion();
-            rootProduccion.LeftSideKey = productionStatementNode.getKey();
-            rootProduccion.rhs = productionStatementNode.getValue().get(0);
-            ArrayList<String> conjunto = new ArrayList<>(asList("$"));
-            rootProduccion.conjunto.addAll(conjunto);
-            componenteInicial.Producciones.add(rootProduccion);
+            for (ArrayList<String> rhProduction :  productionStatementNode.getValue()){
+                DetalleProduccion rootProduccion = new DetalleProduccion();
+                rootProduccion.LeftSideKey = productionStatementNode.getKey();
+                rootProduccion.rhs = productionStatementNode.getValue().get(0);
+                rootProduccion.rhs = rhProduction;
+                ArrayList<String> conjunto = new ArrayList<>(asList("$"));
+                rootProduccion.conjunto.addAll(conjunto);
+                componenteInicial.Producciones.add(rootProduccion);
+            }
             componenteInicial.Producciones.addAll(getClosure(componenteInicial.Producciones.get(0)));
         }
         initialState.componente = componenteInicial;

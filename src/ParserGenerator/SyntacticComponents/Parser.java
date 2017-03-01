@@ -50,13 +50,11 @@ public class Parser {
         ArrayList<StatementNode> import_list = import_list();
         ArrayList<StatementNode> code_parts = code_parts();
         ArrayList<StatementNode> symbol_list = symbol_list();
-//        ArrayList<StatementNode> start_spec = start_spec();
         ArrayList<StatementNode> production_list = production_list();
         returnList.addAll(package_spec);
         returnList.addAll(import_list);
         returnList.addAll(code_parts);
         returnList.addAll(symbol_list);
-//        returnList.addAll(start_spec);
         returnList.addAll(production_list);
         return returnList;
     }
@@ -70,7 +68,7 @@ public class Parser {
         }
         else{
             Epsilon();
-            return new ArrayList<StatementNode>();
+            return new ArrayList<>();
         }
     }
 
@@ -78,19 +76,19 @@ public class Parser {
         Token nonterminal_id = _currentToken;
         GoToNextToken();
         if (_currentToken.Type != TokenTypes.SYM_PRODUCTION){
-            throw new SyntacticException("Expected colon_colon_equals token");
+            throw new SyntacticException("Expected colon_colon_equals token", nonterminal_id.Row);
         }
         GoToNextToken();
-        ArrayList<RightHandSideNode> rightHandSideList = rhs_list();
+        ArrayList<RightHandSideNode> rightHandSideList = rhs_list(nonterminal_id.Row);
         if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-            throw new SyntacticException("Expected semicolon token");
+            throw new SyntacticException("Expected semicolon token", nonterminal_id.Row);
         }
         GoToNextToken();
 
         return new ProductionStatementNode(nonterminal_id, rightHandSideList);
     }
 
-    private ArrayList<RightHandSideNode> rhs_list() throws SyntacticException {
+    private ArrayList<RightHandSideNode> rhs_list(int row) throws SyntacticException {
         if (_currentToken.Type == TokenTypes.IDENTIFIER || _currentToken.Type == TokenTypes.JAVA_CODE){
             RightHandSideNode rightHandSide = rhs();
             ArrayList<RightHandSideNode> rightHandSideList = rightHandSide_List();
@@ -98,7 +96,7 @@ public class Parser {
             return rightHandSideList;
         }
         else{
-            throw new SyntacticException("Expected identifier or java code");
+            throw new SyntacticException("Expected identifier or java code" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
         }
     }
 
@@ -110,7 +108,7 @@ public class Parser {
             rightHandSideList.add(0, rightHandSide);
             return rightHandSideList;
         }
-        return new ArrayList<RightHandSideNode>();
+        return new ArrayList<>();
     }
 
     private RightHandSideNode rhs() throws SyntacticException {
@@ -148,7 +146,7 @@ public class Parser {
         if (_currentToken.Type == TokenTypes.SYM_COLON){
             GoToNextToken();
             if (_currentToken.Type != TokenTypes.IDENTIFIER){
-                throw new SyntacticException("Expected Identifier token");
+                throw new SyntacticException("Expected Identifier token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
             }
             Token optionalLabel = _currentToken;
             GoToNextToken();
@@ -166,7 +164,7 @@ public class Parser {
         }
         else{
             Epsilon();
-            return new ArrayList<StatementNode>();
+            return new ArrayList<>();
         }
     }
 
@@ -174,7 +172,7 @@ public class Parser {
         if(_currentToken.Type == TokenTypes.RESERVED_TERMINAL){
             GoToNextToken();
             if(_currentToken.Type != TokenTypes.IDENTIFIER){
-                throw new SyntacticException("Expected Identifier token");
+                throw new SyntacticException("Expected Identifier token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
             }
             Token nextToken = _tokens.get(_position + 1);
             if (nextToken.Type == TokenTypes.SYM_DOT){
@@ -182,7 +180,7 @@ public class Parser {
 
                 ArrayList<Token> declaresTerm = declares_term();
                 if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                    throw new SyntacticException("Expected semicolon token");
+                    throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
                 }
                 GoToNextToken();
                 return new TerminalDeclarationNode(multiPart, declaresTerm);
@@ -190,7 +188,7 @@ public class Parser {
             else if (nextToken.Type == TokenTypes.SYM_COMMA){
                 ArrayList<Token> declaresTerm = declares_term();
                 if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                    throw new SyntacticException("Expected semicolon token");
+                    throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
                 }
                 GoToNextToken();
                 return new TerminalDeclarationNode(declaresTerm);
@@ -206,7 +204,7 @@ public class Parser {
                         GoToNextToken();
                     }
                     if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                        throw new SyntacticException("Expected semicolon token");
+                        throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
                     }
                     GoToNextToken();
                     return new TerminalDeclarationNode(multiPart,declaresTerm);
@@ -226,7 +224,7 @@ public class Parser {
         else if(_currentToken.Type == TokenTypes.RESERVED_NONTERMINAL){
             GoToNextToken();
             if(_currentToken.Type != TokenTypes.IDENTIFIER){
-                throw new SyntacticException("Expected Identifier token");
+                throw new SyntacticException("Expected Identifier token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
             }
             Token nextToken = _tokens.get(_position + 1);
             if (nextToken.Type == TokenTypes.SYM_DOT){
@@ -234,7 +232,7 @@ public class Parser {
 
                 ArrayList<Token> declaresTerm = declares_term();
                 if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                    throw new SyntacticException("Expected semicolon token");
+                    throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
                 }
                 GoToNextToken();
                 return new NonTerminalDeclarationNode(multiPart, declaresTerm);
@@ -242,7 +240,7 @@ public class Parser {
             else if (nextToken.Type == TokenTypes.SYM_COMMA){
                 ArrayList<Token> declaresTerm = declares_term();
                 if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                    throw new SyntacticException("Expected semicolon token");
+                    throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
                 }
                 GoToNextToken();
                 return new NonTerminalDeclarationNode(declaresTerm);
@@ -258,7 +256,7 @@ public class Parser {
                         GoToNextToken();
                     }
                     if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                        throw new SyntacticException("Expected semicolon token");
+                        throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
                     }
                     GoToNextToken();
                     return new NonTerminalDeclarationNode(multiPart, declaresTerm);
@@ -280,7 +278,7 @@ public class Parser {
             if(_currentToken.Type == TokenTypes.RESERVED_TERMINAL){
                 GoToNextToken();
                 if(_currentToken.Type != TokenTypes.IDENTIFIER){
-                    throw new SyntacticException("Expected Identifier token");
+                    throw new SyntacticException("Expected Identifier token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
                 }
                 Token nextToken = _tokens.get(_position + 1);
                 if (nextToken.Type == TokenTypes.SYM_DOT){
@@ -288,7 +286,7 @@ public class Parser {
 
                     ArrayList<Token> declaresTerm = declares_term();
                     if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                        throw new SyntacticException("Expected semicolon token");
+                        throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
                     }
                     GoToNextToken();
                     return new NonTerminalDeclarationNode(multiPart, declaresTerm);
@@ -296,7 +294,7 @@ public class Parser {
                 else if (nextToken.Type == TokenTypes.SYM_COMMA){
                     ArrayList<Token> declaresTerm = declares_term();
                     if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                        throw new SyntacticException("Expected semicolon token");
+                        throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
                     }
                     GoToNextToken();
                     return new NonTerminalDeclarationNode(declaresTerm);
@@ -312,7 +310,7 @@ public class Parser {
                             GoToNextToken();
                         }
                         if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                            throw new SyntacticException("Expected semicolon token");
+                            throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
                         }
                         GoToNextToken();
                         return new NonTerminalDeclarationNode(multiPart, declaresTerm);
@@ -330,7 +328,7 @@ public class Parser {
                 }
             }
             else{
-                throw new SyntacticException("Expected reserved terminal token");
+                throw new SyntacticException("Expected reserved terminal token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
             }
         }
         return null;
@@ -356,7 +354,7 @@ public class Parser {
         }
         else{
             Epsilon();
-            return new ArrayList<StatementNode>();
+            return new ArrayList<>();
         }
     }
 
@@ -364,13 +362,13 @@ public class Parser {
         if(_currentToken.Type == TokenTypes.RESERVED_ACTION){
             GoToNextToken();
             if(_currentToken.Type != TokenTypes.RESERVED_CODE){
-                throw new SyntacticException("Expected reserved CODE token");
+                throw new SyntacticException("Expected reserved CODE token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
             }
             GoToNextToken();
             String javaCode = _currentToken.Lexeme;
             GoToNextToken();
             if(_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                throw new SyntacticException("Expected semicolon token");
+                throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
             }
             GoToNextToken();
             return new ActionCodeNode(javaCode);
@@ -378,13 +376,13 @@ public class Parser {
         else if(_currentToken.Type == TokenTypes.RESERVED_SCAN){
             GoToNextToken();
             if(_currentToken.Type != TokenTypes.RESERVED_WITH){
-                throw new SyntacticException("Expected reserved WITH token");
+                throw new SyntacticException("Expected reserved WITH token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
             }
             GoToNextToken();
             String javaCode = _currentToken.Lexeme;
             GoToNextToken();
             if(_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                throw new SyntacticException("Expected semicolon token");
+                throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
             }
             GoToNextToken();
             return new ScanCodeNode(javaCode);
@@ -392,13 +390,13 @@ public class Parser {
         else if(_currentToken.Type == TokenTypes.RESERVED_INIT){
             GoToNextToken();
             if(_currentToken.Type != TokenTypes.RESERVED_WITH){
-                throw new SyntacticException("Expected reserved WITH token");
+                throw new SyntacticException("Expected reserved WITH token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
             }
             GoToNextToken();
             String javaCode = _currentToken.Lexeme;
             GoToNextToken();
             if(_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                throw new SyntacticException("Expected semicolon token");
+                throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
             }
             GoToNextToken();
             return new InitCodeNode(javaCode);
@@ -406,13 +404,13 @@ public class Parser {
         else{
             GoToNextToken();
             if(_currentToken.Type != TokenTypes.RESERVED_CODE){
-                throw new SyntacticException("Expected reserved CODE token");
+                throw new SyntacticException("Expected reserved CODE token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
             }
             GoToNextToken();
             String javaCode = _currentToken.Lexeme;
             GoToNextToken();
             if(_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                throw new SyntacticException("Expected semicolon token");
+                throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
             }
             GoToNextToken();
             return new ParserCodeNode(javaCode);
@@ -428,7 +426,7 @@ public class Parser {
         }
         else{
             Epsilon();
-            return new ArrayList<StatementNode>();
+            return new ArrayList<>();
         }
     }
 
@@ -436,7 +434,7 @@ public class Parser {
         GoToNextToken();
         ArrayList<Token> identifiers = import_id();
         if(_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-            throw new SyntacticException("Expected semicolon token");
+            throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
         }
         else{
             GoToNextToken();
@@ -463,7 +461,7 @@ public class Parser {
             returnPackageStatements.add(new PackageStatementNode(multipart_id));
 
             if(_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-                throw new SyntacticException("Expected semicolon token");
+                throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
             }
             GoToNextToken();
         }

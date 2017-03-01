@@ -64,11 +64,11 @@ public class Lexer {
                                 return GetToken(lexeme, TokenTypes.JAVA_CODE);
                             }
                         }
-                        else if (currentSymbol == '\0'){
-                            throw new LexerException("No cerro el bloque de codigo de java");
+                        else if (CharacterIsEndOfFile(currentSymbol)){
+                            throw new LexerException("No cerro el bloque de codigo de java " ,_row, _column);
                         }
                         else{
-                            if (currentSymbol == '\n'){
+                            if (CharacterIsNewLine(currentSymbol)){
                                 _row++;
                                 _column = -1;
                             }
@@ -78,7 +78,7 @@ public class Lexer {
                     }
                 }
                 else{
-                    throw new LexerException("Expected colon character (:) after brace left character ('{')");
+                    throw new LexerException("Expected colon character (:) after brace left character ('{')", _row, _column);
                 }
             }
         }

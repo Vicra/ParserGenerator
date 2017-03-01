@@ -1,10 +1,25 @@
 {
-  "S": [
-    "d",
-    "c"
+  "expr_part": [
+    "PRINT",
+    "ID"
   ],
-  "C": [
-    "d",
-    "c"
+  "factor": [
+    "LPAREN",
+    "NUMBER",
+    "ID"
+  ],
+  "term": [
+    "LPAREN",
+    "NUMBER",
+    "ID"
+  ],
+  "expr_list": [
+    "PRINT",
+    "ID"
+  ],
+  "expr": [
+    "LPAREN",
+    "NUMBER",
+    "ID"
   ]
 }

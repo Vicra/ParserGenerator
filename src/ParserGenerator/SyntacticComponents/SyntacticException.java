@@ -9,6 +9,6 @@ public class SyntacticException extends Exception {
     }
 
     public SyntacticException(String message, int row){
-        super(message);
+        super(message + "\nRow");
     }
 }
