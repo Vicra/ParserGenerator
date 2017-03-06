@@ -1,17 +1,19 @@
 package ParserGenerator;
 
 import Automaton.Automaton;
+import Automaton.ParserTable;
+import Automaton.State;
 import ParserGenerator.LexerComponents.Lexer;
 import ParserGenerator.SyntacticComponents.Parser;
 import ParserGenerator.TreeComponents.StatementNode;
-import ParserGenerator.TreeComponents.Statements.ProductionStatementNode;
+import com.google.common.collect.RowSortedTable;
 import com.google.gson.GsonBuilder;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import javafx.util.Pair;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class Main {
     public static void main(String argv[]) throws Exception {
@@ -29,47 +31,44 @@ public class Main {
         catch(Exception e){
             System.out.print("error:" + e.getMessage());
         }
+        /*          LEXER            */
         Lexer lexer = new Lexer(cupFileContent);
+
+        /*          PARSER            */
         Parser parser = new Parser(lexer);
         ArrayList<StatementNode> statements = parser.Parse();
+
+        /*          SEMANTIC            */
         for (StatementNode statement : statements) {
             statement.ValidateSemantic();
         }
 
-        Hashtable<String, ArrayList<String>> primerosProducciones = new Hashtable<>();
-        Hashtable<String, ArrayList<String>> siguientesProducciones = new Hashtable<>();
+        /*          GENERATE AUTOMATA            */
         Automaton automata = new Automaton(statements);
-        for(int i = statements.size()-1; i>=0 ;i--) {
-            StatementNode statement = statements.get(i);
-            if(statement instanceof ProductionStatementNode){
-                ProductionStatementNode production = (ProductionStatementNode)statement;
-                ArrayList<String> primeros = automata.getFirst(production.LeftHandSide.Lexeme);
-                primerosProducciones.put(production.LeftHandSide.Lexeme, primeros);
+        ArrayList<State> thisStates = automata.generateStates();
+
+        String cadena = automata.printAutomata();
+        System.out.println(getMinimizedGrammar(automata.MinimizedGrammar));
+        System.out.println(cadena);
+
+        /*          GENERATE TABLE            */
+        RowSortedTable<String, String, String> table = ParserTable.getTable(thisStates,automata.MinimizedGrammar);
+        String tableString = new GsonBuilder().setPrettyPrinting().create().toJson(table);
+        System.out.println(tableString);
+    }
+
+    private static String getMinimizedGrammar(ArrayList<Pair<String, ArrayList<ArrayList<String>>>> minimizedGrammar) {
+        String cadena = "/*GRAMMAR*/\n";
+        for (Pair<String, ArrayList<ArrayList<String>>> pair : minimizedGrammar){
+            for (ArrayList<String> array : pair.getValue()){
+                cadena += pair.getKey();
+                cadena += "->";
+                for (String valor : array){
+                    cadena += valor;
+                }
+                cadena+="\n";
             }
         }
-
-
-        for(int i = 0 ; i<statements.size() ; i++) {
-            StatementNode statement = statements.get(i);
-            if(statement instanceof ProductionStatementNode){
-                ProductionStatementNode production = (ProductionStatementNode)statement;
-                ArrayList<String> siguientes = automata.getNext(production.LeftHandSide.Lexeme);
-                siguientesProducciones.put(production.LeftHandSide.Lexeme, siguientes);
-            }
-        }
-        automata.FirstsTable = primerosProducciones;
-        automata.SecondsTable = siguientesProducciones;
-        automata.generateStates();
-
-        String primeros = new GsonBuilder().setPrettyPrinting().create().toJson(primerosProducciones);
-        PrintWriter writer = new PrintWriter("primeros.txt", "UTF-8");writer.println(primeros);writer.close();
-
-        String siguientes = new GsonBuilder().setPrettyPrinting().create().toJson(siguientesProducciones);
-        writer = new PrintWriter("siguientes.txt", "UTF-8");writer.println(siguientes);writer.close();
-
-        System.out.println("Archivos generados: primeros.txt");
-        System.out.println("Archivos generados: siguientes.txt");
-        System.out.println("Archivos generados: automata.txt");
-
+        return cadena;
     }
 }

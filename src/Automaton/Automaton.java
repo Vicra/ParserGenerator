@@ -11,6 +11,7 @@ import ParserGenerator.TreeComponents.Statements.Productions.ProductionPart;
 import ParserGenerator.TreeComponents.Statements.Productions.SymbolPart;
 import ParserGenerator.TreeComponents.Statements.RightHandSideNode;
 import com.google.gson.GsonBuilder;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.util.Pair;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -55,13 +56,18 @@ public class Automaton {
                 rootProduccion.conjunto.addAll(conjunto);
                 componenteInicial.Producciones.add(rootProduccion);
             }
-            componenteInicial.Producciones.addAll(getClosure(componenteInicial.Producciones.get(0)));
+            ArrayList<DetalleProduccion> clausura = getClosure(componenteInicial.Producciones.get(0));
+            for (DetalleProduccion clausuraItem : clausura){
+                if (!componenteInicial.Producciones.contains(clausuraItem)){
+                    componenteInicial.Producciones.add(clausuraItem);
+                }
+            }
         }
         initialState.componente = componenteInicial;
         return initialState;
     }
 
-    public void generateStates() throws SemanticException, FileNotFoundException, UnsupportedEncodingException {
+    public ArrayList<State> generateStates() throws SemanticException, FileNotFoundException, UnsupportedEncodingException {
         State firstState = generateFirstState();
         States.add(firstState);
         int currentPosition = 0;
@@ -72,6 +78,57 @@ public class Automaton {
         }
         String primeros = new GsonBuilder().setPrettyPrinting().create().toJson(States);
         PrintWriter writer = new PrintWriter("automata.txt", "UTF-8");writer.println(primeros);writer.close();
+
+        reorderDetalleProduccion();
+        return this.States;
+    }
+
+    public String printAutomata() {
+        String cadena = "/*AUTOMATA*/\n";
+        for (State state : States){
+            cadena += state.name + "\n";
+            for (DetalleProduccion produccion : state.componente.Producciones){
+                cadena += produccion.LeftSideKey;
+                cadena += "->";
+                for (int i = 0 ; i < produccion.rhs.size(); i++){
+                    if (i == produccion.puntero){
+                        cadena += "•";
+                    }
+                    cadena += produccion.rhs.get(i);
+                }
+                if (produccion.rhs.size() == produccion.puntero){
+                    cadena += "•";
+                }
+                cadena += ",{";
+                for (int i = 0; i< produccion.conjunto.size(); i++){
+                    cadena += produccion.conjunto.get(i);
+                    if (i < produccion.conjunto.size()-1){
+                        cadena += "/";
+                    }
+                }
+                cadena += "}";
+                cadena += "\n";
+            }
+            cadena += "\n";
+        }
+        return cadena;
+    }
+
+    public void reorderDetalleProduccion(){
+        for (State state : States){
+            ArrayList<DetalleProduccion> newDetalleProduccion = new ArrayList<>();
+            for(Pair<String, ArrayList<ArrayList<String>>> iter : this.MinimizedGrammar){
+                for (DetalleProduccion produccion : state.componente.Producciones){
+                    if (produccion.LeftSideKey.equals(iter.getKey()) || produccion.LeftSideKey.equals("S'")){
+                        if (!newDetalleProduccion.contains(produccion)){
+                            newDetalleProduccion.add(produccion);
+                        }
+                    }
+                }
+            }
+            state.componente.Producciones = newDetalleProduccion;
+        }
+        System.out.println("");
     }
 
     private void createNextNode(int position) throws SemanticException {
@@ -88,11 +145,21 @@ public class Automaton {
                         automatonSize = States.size();
                     }
                     String symbolo = detalleProduccion.rhs.get(detalleProduccion.puntero);
-                    currentState.transitions.add(new Transition(symbolo,currentState.name, stateToCheck.name));
+                    String name = !Objects.equals(stateToCheck.name, null) ? stateToCheck.name : getStateName(stateToCheck);
+                    currentState.transitions.add(new Transition(symbolo,currentState.name, name));
                     symbols.add(detalleProduccion.rhs.get(detalleProduccion.puntero));
                 }
             }
         }
+    }
+
+    private String getStateName(State stateToCheck) {
+        for(State state : States)
+        {
+            if(statesAreEqual(state,stateToCheck))
+                return state.name;
+        }
+        return "";
     }
 
     private boolean stateExists(State newState){
@@ -185,7 +252,9 @@ public class Automaton {
                             detalle.LeftSideKey = production.getKey();
                             detalle.rhs = rightSide;
                             detalle.conjunto = getConjunto(produccionPadre);
-                            returnList.addAll(getClosure(detalle));
+                            ArrayList<DetalleProduccion> clausura = getClosure(detalle);
+                            returnList.add(detalle);
+                            returnList.addAll(clausura);
                         }
                     }
                     else{

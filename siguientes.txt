@@ -1,23 +1,9 @@
 {
-  "term": [],
-  "factor": [
-    "TIMES",
-    "DIVIDE"
+  "A": [
+    "a",
+    "b"
   ],
-  "expr_part": [
-    "$",
-    "PRINT",
-    "ID"
-  ],
-  "expr": [
-    "SEMI",
-    "PLUS",
-    "MINUS",
-    "RPAREN"
-  ],
-  "expr_list": [
-    "$",
-    "PRINT",
-    "ID"
+  "S": [
+    "$"
   ]
 }

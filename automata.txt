@@ -4,22 +4,22 @@
     "transitions": [
       {
         "origin": "I0",
-        "symbol": "expr_list",
+        "symbol": "S",
         "destiny": "I1"
       },
       {
         "origin": "I0",
-        "symbol": "expr_part",
+        "symbol": "A",
         "destiny": "I2"
       },
       {
         "origin": "I0",
-        "symbol": "PRINT",
+        "symbol": "d",
         "destiny": "I3"
       },
       {
         "origin": "I0",
-        "symbol": "ID",
+        "symbol": "c",
         "destiny": "I4"
       }
     ],
@@ -30,7 +30,7 @@
         {
           "LeftSideKey": "S\u0027",
           "rhs": [
-            "expr_list"
+            "S"
           ],
           "puntero": 0,
           "conjunto": [
@@ -38,10 +38,10 @@
           ]
         },
         {
-          "LeftSideKey": "expr_list",
+          "LeftSideKey": "S",
           "rhs": [
-            "expr_list",
-            "expr_part"
+            "A",
+            "a"
           ],
           "puntero": 0,
           "conjunto": [
@@ -49,9 +49,11 @@
           ]
         },
         {
-          "LeftSideKey": "expr_list",
+          "LeftSideKey": "S",
           "rhs": [
-            "expr_part"
+            "d",
+            "A",
+            "b"
           ],
           "puntero": 0,
           "conjunto": [
@@ -59,11 +61,11 @@
           ]
         },
         {
-          "LeftSideKey": "expr_part",
+          "LeftSideKey": "S",
           "rhs": [
-            "PRINT",
-            "expr",
-            "SEMI"
+            "d",
+            "c",
+            "a"
           ],
           "puntero": 0,
           "conjunto": [
@@ -71,16 +73,24 @@
           ]
         },
         {
-          "LeftSideKey": "expr_part",
+          "LeftSideKey": "S",
           "rhs": [
-            "ID",
-            "EQUALS",
-            "expr",
-            "SEMI"
+            "c",
+            "b"
           ],
           "puntero": 0,
           "conjunto": [
             "$"
+          ]
+        },
+        {
+          "LeftSideKey": "A",
+          "rhs": [
+            "c"
+          ],
+          "puntero": 0,
+          "conjunto": [
+            "a"
           ]
         }
       ]
@@ -88,21 +98,7 @@
   },
   {
     "name": "I1",
-    "transitions": [
-      {
-        "origin": "I1",
-        "symbol": "expr_part",
-        "destiny": "I5"
-      },
-      {
-        "origin": "I1",
-        "symbol": "PRINT"
-      },
-      {
-        "origin": "I1",
-        "symbol": "ID"
-      }
-    ],
+    "transitions": [],
     "isInitialState": false,
     "isAcceptanceState": false,
     "componente": {
@@ -110,45 +106,9 @@
         {
           "LeftSideKey": "S\u0027",
           "rhs": [
-            "expr_list"
+            "S"
           ],
           "puntero": 1,
-          "conjunto": [
-            "$"
-          ]
-        },
-        {
-          "LeftSideKey": "expr_list",
-          "rhs": [
-            "expr_list",
-            "expr_part"
-          ],
-          "puntero": 1,
-          "conjunto": [
-            "$"
-          ]
-        },
-        {
-          "LeftSideKey": "expr_part",
-          "rhs": [
-            "PRINT",
-            "expr",
-            "SEMI"
-          ],
-          "puntero": 0,
-          "conjunto": [
-            "$"
-          ]
-        },
-        {
-          "LeftSideKey": "expr_part",
-          "rhs": [
-            "ID",
-            "EQUALS",
-            "expr",
-            "SEMI"
-          ],
-          "puntero": 0,
           "conjunto": [
             "$"
           ]
@@ -158,15 +118,22 @@
   },
   {
     "name": "I2",
-    "transitions": [],
+    "transitions": [
+      {
+        "origin": "I2",
+        "symbol": "a",
+        "destiny": "I5"
+      }
+    ],
     "isInitialState": false,
     "isAcceptanceState": false,
     "componente": {
       "Producciones": [
         {
-          "LeftSideKey": "expr_list",
+          "LeftSideKey": "S",
           "rhs": [
-            "expr_part"
+            "A",
+            "a"
           ],
           "puntero": 1,
           "conjunto": [
@@ -181,23 +148,13 @@
     "transitions": [
       {
         "origin": "I3",
-        "symbol": "expr",
+        "symbol": "A",
         "destiny": "I6"
       },
       {
         "origin": "I3",
-        "symbol": "LPAREN",
+        "symbol": "c",
         "destiny": "I7"
-      },
-      {
-        "origin": "I3",
-        "symbol": "NUMBER",
-        "destiny": "I8"
-      },
-      {
-        "origin": "I3",
-        "symbol": "ID",
-        "destiny": "I9"
       }
     ],
     "isInitialState": false,
@@ -205,11 +162,11 @@
     "componente": {
       "Producciones": [
         {
-          "LeftSideKey": "expr_part",
+          "LeftSideKey": "S",
           "rhs": [
-            "PRINT",
-            "expr",
-            "SEMI"
+            "d",
+            "A",
+            "b"
           ],
           "puntero": 1,
           "conjunto": [
@@ -217,35 +174,25 @@
           ]
         },
         {
-          "LeftSideKey": "term",
+          "LeftSideKey": "A",
           "rhs": [
-            "LPAREN",
-            "expr",
-            "RPAREN"
+            "c"
           ],
           "puntero": 0,
           "conjunto": [
-            "SEMI"
+            "b"
           ]
         },
         {
-          "LeftSideKey": "term",
+          "LeftSideKey": "S",
           "rhs": [
-            "NUMBER"
+            "d",
+            "c",
+            "a"
           ],
-          "puntero": 0,
+          "puntero": 1,
           "conjunto": [
-            "SEMI"
-          ]
-        },
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "ID"
-          ],
-          "puntero": 0,
-          "conjunto": [
-            "SEMI"
+            "$"
           ]
         }
       ]
@@ -256,8 +203,8 @@
     "transitions": [
       {
         "origin": "I4",
-        "symbol": "EQUALS",
-        "destiny": "I10"
+        "symbol": "b",
+        "destiny": "I8"
       }
     ],
     "isInitialState": false,
@@ -265,16 +212,24 @@
     "componente": {
       "Producciones": [
         {
-          "LeftSideKey": "expr_part",
+          "LeftSideKey": "S",
           "rhs": [
-            "ID",
-            "EQUALS",
-            "expr",
-            "SEMI"
+            "c",
+            "b"
           ],
           "puntero": 1,
           "conjunto": [
             "$"
+          ]
+        },
+        {
+          "LeftSideKey": "A",
+          "rhs": [
+            "c"
+          ],
+          "puntero": 1,
+          "conjunto": [
+            "a"
           ]
         }
       ]
@@ -288,10 +243,10 @@
     "componente": {
       "Producciones": [
         {
-          "LeftSideKey": "expr_list",
+          "LeftSideKey": "S",
           "rhs": [
-            "expr_list",
-            "expr_part"
+            "A",
+            "a"
           ],
           "puntero": 2,
           "conjunto": [
@@ -306,8 +261,8 @@
     "transitions": [
       {
         "origin": "I6",
-        "symbol": "SEMI",
-        "destiny": "I11"
+        "symbol": "b",
+        "destiny": "I9"
       }
     ],
     "isInitialState": false,
@@ -315,11 +270,11 @@
     "componente": {
       "Producciones": [
         {
-          "LeftSideKey": "expr_part",
+          "LeftSideKey": "S",
           "rhs": [
-            "PRINT",
-            "expr",
-            "SEMI"
+            "d",
+            "A",
+            "b"
           ],
           "puntero": 2,
           "conjunto": [
@@ -334,23 +289,8 @@
     "transitions": [
       {
         "origin": "I7",
-        "symbol": "expr",
-        "destiny": "I12"
-      },
-      {
-        "origin": "I7",
-        "symbol": "LPAREN",
-        "destiny": "I13"
-      },
-      {
-        "origin": "I7",
-        "symbol": "NUMBER",
-        "destiny": "I14"
-      },
-      {
-        "origin": "I7",
-        "symbol": "ID",
-        "destiny": "I15"
+        "symbol": "a",
+        "destiny": "I10"
       }
     ],
     "isInitialState": false,
@@ -358,47 +298,25 @@
     "componente": {
       "Producciones": [
         {
-          "LeftSideKey": "term",
+          "LeftSideKey": "A",
           "rhs": [
-            "LPAREN",
-            "expr",
-            "RPAREN"
+            "c"
           ],
           "puntero": 1,
           "conjunto": [
-            "SEMI"
+            "b"
           ]
         },
         {
-          "LeftSideKey": "term",
+          "LeftSideKey": "S",
           "rhs": [
-            "LPAREN",
-            "expr",
-            "RPAREN"
+            "d",
+            "c",
+            "a"
           ],
-          "puntero": 0,
+          "puntero": 2,
           "conjunto": [
-            "RPAREN"
-          ]
-        },
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "NUMBER"
-          ],
-          "puntero": 0,
-          "conjunto": [
-            "RPAREN"
-          ]
-        },
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "ID"
-          ],
-          "puntero": 0,
-          "conjunto": [
-            "RPAREN"
+            "$"
           ]
         }
       ]
@@ -412,13 +330,14 @@
     "componente": {
       "Producciones": [
         {
-          "LeftSideKey": "term",
+          "LeftSideKey": "S",
           "rhs": [
-            "NUMBER"
+            "c",
+            "b"
           ],
-          "puntero": 1,
+          "puntero": 2,
           "conjunto": [
-            "SEMI"
+            "$"
           ]
         }
       ]
@@ -432,13 +351,15 @@
     "componente": {
       "Producciones": [
         {
-          "LeftSideKey": "term",
+          "LeftSideKey": "S",
           "rhs": [
-            "ID"
+            "d",
+            "A",
+            "b"
           ],
-          "puntero": 1,
+          "puntero": 3,
           "conjunto": [
-            "SEMI"
+            "$"
           ]
         }
       ]
@@ -446,358 +367,21 @@
   },
   {
     "name": "I10",
-    "transitions": [
-      {
-        "origin": "I10",
-        "symbol": "expr",
-        "destiny": "I16"
-      },
-      {
-        "origin": "I10",
-        "symbol": "LPAREN"
-      },
-      {
-        "origin": "I10",
-        "symbol": "NUMBER"
-      },
-      {
-        "origin": "I10",
-        "symbol": "ID"
-      }
-    ],
-    "isInitialState": false,
-    "isAcceptanceState": false,
-    "componente": {
-      "Producciones": [
-        {
-          "LeftSideKey": "expr_part",
-          "rhs": [
-            "ID",
-            "EQUALS",
-            "expr",
-            "SEMI"
-          ],
-          "puntero": 2,
-          "conjunto": [
-            "$"
-          ]
-        },
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "LPAREN",
-            "expr",
-            "RPAREN"
-          ],
-          "puntero": 0,
-          "conjunto": [
-            "SEMI"
-          ]
-        },
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "NUMBER"
-          ],
-          "puntero": 0,
-          "conjunto": [
-            "SEMI"
-          ]
-        },
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "ID"
-          ],
-          "puntero": 0,
-          "conjunto": [
-            "SEMI"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "name": "I11",
     "transitions": [],
     "isInitialState": false,
     "isAcceptanceState": false,
     "componente": {
       "Producciones": [
         {
-          "LeftSideKey": "expr_part",
+          "LeftSideKey": "S",
           "rhs": [
-            "PRINT",
-            "expr",
-            "SEMI"
+            "d",
+            "c",
+            "a"
           ],
           "puntero": 3,
           "conjunto": [
             "$"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "name": "I12",
-    "transitions": [
-      {
-        "origin": "I12",
-        "symbol": "RPAREN",
-        "destiny": "I17"
-      }
-    ],
-    "isInitialState": false,
-    "isAcceptanceState": false,
-    "componente": {
-      "Producciones": [
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "LPAREN",
-            "expr",
-            "RPAREN"
-          ],
-          "puntero": 2,
-          "conjunto": [
-            "SEMI"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "name": "I13",
-    "transitions": [
-      {
-        "origin": "I13",
-        "symbol": "expr",
-        "destiny": "I18"
-      },
-      {
-        "origin": "I13",
-        "symbol": "LPAREN"
-      },
-      {
-        "origin": "I13",
-        "symbol": "NUMBER"
-      },
-      {
-        "origin": "I13",
-        "symbol": "ID"
-      }
-    ],
-    "isInitialState": false,
-    "isAcceptanceState": false,
-    "componente": {
-      "Producciones": [
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "LPAREN",
-            "expr",
-            "RPAREN"
-          ],
-          "puntero": 1,
-          "conjunto": [
-            "RPAREN"
-          ]
-        },
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "LPAREN",
-            "expr",
-            "RPAREN"
-          ],
-          "puntero": 0,
-          "conjunto": [
-            "RPAREN"
-          ]
-        },
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "NUMBER"
-          ],
-          "puntero": 0,
-          "conjunto": [
-            "RPAREN"
-          ]
-        },
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "ID"
-          ],
-          "puntero": 0,
-          "conjunto": [
-            "RPAREN"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "name": "I14",
-    "transitions": [],
-    "isInitialState": false,
-    "isAcceptanceState": false,
-    "componente": {
-      "Producciones": [
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "NUMBER"
-          ],
-          "puntero": 1,
-          "conjunto": [
-            "RPAREN"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "name": "I15",
-    "transitions": [],
-    "isInitialState": false,
-    "isAcceptanceState": false,
-    "componente": {
-      "Producciones": [
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "ID"
-          ],
-          "puntero": 1,
-          "conjunto": [
-            "RPAREN"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "name": "I16",
-    "transitions": [
-      {
-        "origin": "I16",
-        "symbol": "SEMI",
-        "destiny": "I19"
-      }
-    ],
-    "isInitialState": false,
-    "isAcceptanceState": false,
-    "componente": {
-      "Producciones": [
-        {
-          "LeftSideKey": "expr_part",
-          "rhs": [
-            "ID",
-            "EQUALS",
-            "expr",
-            "SEMI"
-          ],
-          "puntero": 3,
-          "conjunto": [
-            "$"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "name": "I17",
-    "transitions": [],
-    "isInitialState": false,
-    "isAcceptanceState": false,
-    "componente": {
-      "Producciones": [
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "LPAREN",
-            "expr",
-            "RPAREN"
-          ],
-          "puntero": 3,
-          "conjunto": [
-            "SEMI"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "name": "I18",
-    "transitions": [
-      {
-        "origin": "I18",
-        "symbol": "RPAREN",
-        "destiny": "I20"
-      }
-    ],
-    "isInitialState": false,
-    "isAcceptanceState": false,
-    "componente": {
-      "Producciones": [
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "LPAREN",
-            "expr",
-            "RPAREN"
-          ],
-          "puntero": 2,
-          "conjunto": [
-            "RPAREN"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "name": "I19",
-    "transitions": [],
-    "isInitialState": false,
-    "isAcceptanceState": false,
-    "componente": {
-      "Producciones": [
-        {
-          "LeftSideKey": "expr_part",
-          "rhs": [
-            "ID",
-            "EQUALS",
-            "expr",
-            "SEMI"
-          ],
-          "puntero": 4,
-          "conjunto": [
-            "$"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "name": "I20",
-    "transitions": [],
-    "isInitialState": false,
-    "isAcceptanceState": false,
-    "componente": {
-      "Producciones": [
-        {
-          "LeftSideKey": "term",
-          "rhs": [
-            "LPAREN",
-            "expr",
-            "RPAREN"
-          ],
-          "puntero": 3,
-          "conjunto": [
-            "RPAREN"
           ]
         }
       ]
