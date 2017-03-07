@@ -52,7 +52,7 @@ public class Main {
         System.out.println(cadena);
 
         /*          GENERATE TABLE            */
-        RowSortedTable<String, String, String> table = ParserTable.getTable(thisStates,automata.MinimizedGrammar);
+        RowSortedTable<Integer, String, String> table = ParserTable.getTable(thisStates,automata.MinimizedGrammar);
         String tableString = new GsonBuilder().setPrettyPrinting().create().toJson(table);
         System.out.println(tableString);
     }

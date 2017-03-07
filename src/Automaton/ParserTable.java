@@ -9,13 +9,12 @@ import com.google.common.collect.TreeBasedTable;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 public class ParserTable {
 
-    public static RowSortedTable<String, String, String> getTable(ArrayList<State> states, ArrayList<Pair<String, ArrayList<ArrayList<String>>>> minimizedAutomata) throws SemanticException {
-        RowSortedTable<String, String, String> parserTable = TreeBasedTable.create();
+    public static RowSortedTable<Integer, String, String> getTable(ArrayList<State> states, ArrayList<Pair<String, ArrayList<ArrayList<String>>>> minimizedAutomata) throws SemanticException {
+        RowSortedTable<Integer, String, String> parserTable = TreeBasedTable.create();
         for (State stateIterator : states) {
 
             for (Transition transition : stateIterator.transitions)
@@ -24,10 +23,10 @@ public class ParserTable {
                 String stateName = transition.destiny;
                 BaseType type = SymbolTable.getInstance().GetType(symbol);
                 if (type instanceof TerminalType){
-                    parserTable.put(stateIterator.name.replace("I", ""), symbol, "S" + stateName.replace("I", ""));
+                    parserTable.put(Integer.parseInt(stateIterator.name.replace("I", "")), symbol, "S" + stateName.replace("I", ""));
                 }
                 else{
-                    parserTable.put(stateIterator.name.replace("I", ""), symbol, stateName.replace("I", ""));
+                    parserTable.put(Integer.parseInt(stateIterator.name.replace("I", "")), symbol, stateName.replace("I", ""));
                 }
             }
 
@@ -39,12 +38,13 @@ public class ParserTable {
                     {
                         if(detalleProduccion.LeftSideKey.equals("S'"))
                         {
-                            parserTable.put(stateIterator.name.replace("I", ""),lookAhead, "Accepted");
+                            parserTable.put(Integer.parseInt(stateIterator.name.replace("I", "")),lookAhead, "Accepted");
                         }
                         else
                         {
-                            String reduction = getReduction(detalleProduccion,states, minimizedAutomata);
-                            parserTable.put(stateIterator.name.replace("I", ""),lookAhead, reduction);
+                            ArrayList<Pair<String, ArrayList<String>>> simplifiedAutomata = simplifyGrammar(minimizedAutomata);
+                            String reduction = getReduction(detalleProduccion, simplifiedAutomata);
+                            parserTable.put(Integer.parseInt(stateIterator.name.replace("I", "")),lookAhead, reduction);
                         }
                     }
                 }
@@ -53,37 +53,24 @@ public class ParserTable {
         return parserTable;
     }
 
-    private static String getReduction(DetalleProduccion detalleProduccion, ArrayList<State> states, ArrayList<Pair<String, ArrayList<ArrayList<String>>>> minimizedAutomata) {
-        for (State stateIterator : states){
-            for (DetalleProduccion detalle : stateIterator.componente.Producciones){
-                if (DetalleAreEqual(detalle, detalleProduccion)){
-                    int i = getProductionPosition(detalleProduccion, minimizedAutomata);
-                    return "R" + i;
-                }
+    private static ArrayList<Pair<String, ArrayList<String>>> simplifyGrammar(ArrayList<Pair<String, ArrayList<ArrayList<String>>>> minimizedAutomata) {
+        ArrayList<Pair<String, ArrayList<String>>> simpleGrammar = new ArrayList<>();
+        for (Pair<String, ArrayList<ArrayList<String>>> pair : minimizedAutomata){
+            for(ArrayList<String> elementos : pair.getValue()){
+                simpleGrammar.add(new Pair<>(pair.getKey(), elementos));
+            }
+        }
+        return simpleGrammar;
+    }
+
+    private static String getReduction(DetalleProduccion detalleProduccion, ArrayList<Pair<String, ArrayList<String>>> minimizedAutomata){
+        for (int i =0; i< minimizedAutomata.size();i++){
+            String lefths = minimizedAutomata.get(i).getKey();
+            ArrayList<String> rhs = minimizedAutomata.get(i).getValue();
+            if (rhs.equals(detalleProduccion.rhs) && lefths.equals(detalleProduccion.LeftSideKey)){
+                return "R" + (i+1);
             }
         }
         return null;
-    }
-
-    private static int getProductionPosition(DetalleProduccion detalleProduccion, ArrayList<Pair<String, ArrayList<ArrayList<String>>>> minimizedAutomata) {
-        for (Pair<String, ArrayList<ArrayList<String>>> pair : minimizedAutomata){
-            if (pair.getKey().equals(detalleProduccion.LeftSideKey))
-                return minimizedAutomata.indexOf(pair) + 1;
-        }
-        return -1;
-    }
-
-    private static boolean DetalleAreEqual(DetalleProduccion detalle, DetalleProduccion detalleProduccion) {
-        if (detalle.rhs.size()!= detalleProduccion.rhs.size())
-            return false;
-        if (!Objects.equals(detalle.LeftSideKey, detalleProduccion.LeftSideKey))
-            return false;
-        if (detalle.puntero != detalleProduccion.puntero)
-            return false;
-        if (!detalle.conjunto.equals(detalleProduccion.conjunto))
-            return false;
-        if (!detalle.rhs.equals(detalleProduccion.rhs))
-            return false;
-        return true;
     }
 }
