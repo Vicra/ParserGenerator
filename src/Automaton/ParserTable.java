@@ -19,14 +19,18 @@ public class ParserTable {
 
             for (Transition transition : stateIterator.transitions)
             {
-                String symbol =  transition.symbol;
+                String column =  transition.symbol;
                 String stateName = transition.destiny;
-                BaseType type = SymbolTable.getInstance().GetType(symbol);
+                BaseType type = SymbolTable.getInstance().GetType(column);
                 if (type instanceof TerminalType){
-                    parserTable.put(Integer.parseInt(stateIterator.name.replace("I", "")), symbol, "S" + stateName.replace("I", ""));
+                    Integer row = Integer.parseInt(stateIterator.name.replace("I", ""));
+                    String value = "S" + stateName.replace("I", "");
+                    parserTable.put(row, column, value);
                 }
                 else{
-                    parserTable.put(Integer.parseInt(stateIterator.name.replace("I", "")), symbol, stateName.replace("I", ""));
+                    Integer row = Integer.parseInt(stateIterator.name.replace("I", ""));
+                    String value = stateName.replace("I", "");
+                    parserTable.put(row, column, value);
                 }
             }
 
@@ -38,13 +42,15 @@ public class ParserTable {
                     {
                         if(detalleProduccion.LeftSideKey.equals("S'"))
                         {
-                            parserTable.put(Integer.parseInt(stateIterator.name.replace("I", "")),lookAhead, "Accepted");
+                            Integer row = Integer.parseInt(stateIterator.name.replace("I", ""));
+                            parserTable.put(row,lookAhead, "Accepted");
                         }
                         else
                         {
                             ArrayList<Pair<String, ArrayList<String>>> simplifiedAutomata = simplifyGrammar(minimizedAutomata);
                             String reduction = getReduction(detalleProduccion, simplifiedAutomata);
-                            parserTable.put(Integer.parseInt(stateIterator.name.replace("I", "")),lookAhead, reduction);
+                            Integer row = Integer.parseInt(stateIterator.name.replace("I", ""));
+                            parserTable.put(row, lookAhead, reduction);
                         }
                     }
                 }
