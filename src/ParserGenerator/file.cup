@@ -1,9 +1,10 @@
-non terminal A, S;
-terminal a, b, c, d;
+non terminal E, T;
+terminal id, PLUS, LPAREN, RPAREN;
 
-S ::= A a
-    | d A b
-    | d c a
-    | c b;
+E ::= T PLUS E
+    | T;
 
-A ::= c;
+T ::= id
+     | LPAREN E RPAREN;
+
+

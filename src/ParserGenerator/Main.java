@@ -10,6 +10,7 @@ import com.google.common.collect.RowSortedTable;
 import com.google.gson.GsonBuilder;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.util.Pair;
+import Automaton.ComponenteInicial;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,15 +47,39 @@ public class Main {
         /*          GENERATE AUTOMATA            */
         Automaton automata = new Automaton(statements);
         ArrayList<State> thisStates = automata.generateStates();
+        ArrayList<State> reduced = reduceStates(thisStates);
 
         String cadena = automata.printAutomata();
         System.out.println(getMinimizedGrammar(automata.MinimizedGrammar));
         System.out.println(cadena);
 
         /*          GENERATE TABLE            */
-        RowSortedTable<Integer, String, String> table = ParserTable.getTable(thisStates,automata.MinimizedGrammar);
+        RowSortedTable<Integer, String, String> table = ParserTable.getTable(reduced,automata.MinimizedGrammar);
         String tableString = new GsonBuilder().setPrettyPrinting().create().toJson(table);
         System.out.println(tableString);
+    }
+
+    private static ArrayList<State> reduceStates(ArrayList<State> thisStates) {
+        ArrayList<State> returnStates = new ArrayList<>();
+        for (State state : thisStates){
+            if (!listContainsState(returnStates, state)){
+                returnStates.add(state);
+            }
+        }
+        return returnStates;
+    }
+
+    private static boolean listContainsState(ArrayList<State> thisStates, State state) {
+        for (State stateIterator : thisStates){
+            if(stateIterator.name.equals(state.name)){
+                if(stateIterator.componente.Producciones.equals(state.componente.Producciones)){
+                    if (stateIterator.transitions.equals(state.transitions)){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     private static String getMinimizedGrammar(ArrayList<Pair<String, ArrayList<ArrayList<String>>>> minimizedGrammar) {
