@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0f0e853-eedb-4e50-9f39-7a63d0c364cb" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/Automaton.class" afterPath="$PROJECT_DIR$/out/production/FlexCup/Automaton/Automaton.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/DetalleProduccion.class" afterPath="$PROJECT_DIR$/out/production/FlexCup/Automaton/DetalleProduccion.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/ParserTable.class" afterPath="$PROJECT_DIR$/out/production/FlexCup/Automaton/ParserTable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/State.class" afterPath="$PROJECT_DIR$/out/production/FlexCup/Automaton/State.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/ParserGenerator/Main.class" afterPath="$PROJECT_DIR$/out/production/FlexCup/ParserGenerator/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/automata.txt" afterPath="$PROJECT_DIR$/automata.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/ParserGenerator/file.cup" afterPath="$PROJECT_DIR$/out/production/FlexCup/ParserGenerator/file.cup" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automaton/Componente.java" afterPath="$PROJECT_DIR$/src/Automaton/Componente.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automaton/Automaton.java" afterPath="$PROJECT_DIR$/src/Automaton/Automaton.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automaton/DetalleProduccion.java" afterPath="$PROJECT_DIR$/src/Automaton/DetalleProduccion.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automaton/ParserTable.java" afterPath="$PROJECT_DIR$/src/Automaton/ParserTable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automaton/State.java" afterPath="$PROJECT_DIR$/src/Automaton/State.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ParserGenerator/Main.java" afterPath="$PROJECT_DIR$/src/ParserGenerator/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ParserGenerator/file.cup" afterPath="$PROJECT_DIR$/src/ParserGenerator/file.cup" />
     </list>
@@ -31,106 +38,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Automaton.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Automaton.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Automaton/Automaton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="69" column="37" lean-forward="false" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ParserTable.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Automaton/ParserTable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="30" column="88" lean-forward="false" selection-start-line="30" selection-start-column="88" selection-end-line="30" selection-end-column="88" />
+            <state relative-caret-position="580">
+              <caret line="259" column="31" lean-forward="true" selection-start-line="259" selection-start-column="31" selection-end-line="259" selection-end-column="31" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#generateFirstState#0;class#Automaton#0" expanded="false" />
+                <element signature="method#generateStates#0;class#Automaton#0" expanded="false" />
+                <element signature="method#reduceStates#0;class#Automaton#0" expanded="false" />
+                <element signature="method#CompareStates#0;class#Automaton#0" expanded="false" />
+                <element signature="method#printAutomata#0;class#Automaton#0" expanded="false" />
+                <element signature="method#reorderDetalleProduccion#0;class#Automaton#0" expanded="false" />
+                <element signature="method#createNextState#0;class#Automaton#0" expanded="false" />
+                <element signature="method#getStateName#0;class#Automaton#0" expanded="false" />
+                <element signature="method#stateExists#0;class#Automaton#0" expanded="false" />
+                <element signature="method#StatesAreTheSame#0;class#Automaton#0" expanded="false" />
+                <element signature="method#statesAreEqual#0;class#Automaton#0" expanded="false" />
+                <element signature="method#goTo#0;class#Automaton#0" expanded="false" />
+                <element signature="method#GetClosure#0;class#Automaton#0" expanded="false" />
+                <element signature="method#GetLookAhead#0;class#Automaton#0" expanded="false" />
+                <element signature="method#minimizeGrammar#0;class#Automaton#0" expanded="false" />
+                <element signature="method#getFirst#0;class#Automaton#0" expanded="false" />
+                <element signature="method#getNext#0;class#Automaton#0" expanded="false" />
+                <element signature="method#getNextSymbols#0;class#Automaton#0" expanded="false" />
+                <element signature="method#getLeftSideProduction#0;class#Automaton#0" expanded="false" />
+                <element signature="method#isTerminalType#0;class#Automaton#0" expanded="false" />
+                <element signature="method#isNonTerminalType#0;class#Automaton#0" expanded="false" />
+                <element signature="method#getRightProductionsThatContainSymbol#0;class#Automaton#0" expanded="false" />
+                <element signature="method#OrderStatements#0;class#Automaton#0" expanded="false" />
+                <element signature="method#getProductionStatement#0;class#Automaton#0" expanded="false" />
+                <element signature="method#getMinimizedProductionStatement#0;class#Automaton#0" expanded="false" />
+                <element signature="method#getMinimizedAumentada#0;class#Automaton#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ParserGenerator/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="76" column="36" lean-forward="true" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ComponenteInicial.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Automaton/ComponenteInicial.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="4" column="45" lean-forward="false" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Componente.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Automaton/Componente.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" column="11" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="State.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Automaton/State.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="automata.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/automata.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="22" column="23" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="primeros.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/primeros.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="siguientes.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/siguientes.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="file.cup" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ParserGenerator/file.cup">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -147,15 +87,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>start_spec</find>
-      <find>TerminalSymbolNode</find>
-      <find>tree</find>
-      <find>produccion</find>
       <find>hash</find>
       <find>add</find>
       <find>getNext</find>
       <find>productionStatementNode</find>
-      <find>getFirst</find>
       <find>key</find>
       <find>Transition</find>
       <find>generatestates</find>
@@ -167,7 +102,6 @@
       <find>throw new</find>
       <find>terminal</find>
       <find>symbol</find>
-      <find>new trans</find>
       <find>getclosure</find>
       <find>I0</find>
       <find>get</find>
@@ -177,6 +111,12 @@
       <find>printAutomata</find>
       <find>reorder</find>
       <find>getProductionPosition</find>
+      <find>getduplicateS</find>
+      <find>getDuplicateStatesof</find>
+      <find>new trans</find>
+      <find>transitions.add</find>
+      <find>getFirst</find>
+      <find>crete</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -190,7 +130,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/ParserGenerator/TreeComponents/Statements/UserCodeComponentStatementNode.java" />
         <option value="$PROJECT_DIR$/src/ParserGenerator/LexerComponents/ReservedWords.java" />
         <option value="$PROJECT_DIR$/src/ParserGenerator/LexerComponents/TokenTypes.java" />
         <option value="$PROJECT_DIR$/src/ParserGenerator/SyntacticComponents/TokenValidations.java" />
@@ -227,20 +166,21 @@
         <option value="$PROJECT_DIR$/src/Automaton/Transition.java" />
         <option value="$PROJECT_DIR$/dump.txt" />
         <option value="$PROJECT_DIR$/src/Automaton/ComponenteInicial.java" />
-        <option value="$PROJECT_DIR$/src/Automaton/State.java" />
         <option value="$PROJECT_DIR$/src/ParserGenerator/LexerComponents/LexerException.java" />
         <option value="$PROJECT_DIR$/src/ParserGenerator/LexerComponents/Lexer.java" />
         <option value="$PROJECT_DIR$/src/ParserGenerator/SyntacticComponents/SyntacticException.java" />
         <option value="$PROJECT_DIR$/src/ParserGenerator/SyntacticComponents/Parser.java" />
         <option value="$PROJECT_DIR$/automata.txt" />
-        <option value="$PROJECT_DIR$/src/Automaton/DetalleProduccion.java" />
         <option value="$PROJECT_DIR$/src/Automaton/ParseTable.java" />
         <option value="$PROJECT_DIR$/src/Tests/AutomatonTests.java" />
-        <option value="$PROJECT_DIR$/src/Automaton/ParserTable.java" />
-        <option value="$PROJECT_DIR$/src/ParserGenerator/file.cup" />
-        <option value="$PROJECT_DIR$/src/Automaton/Automaton.java" />
         <option value="$PROJECT_DIR$/src/Automaton/Componente.java" />
+        <option value="$PROJECT_DIR$/src/Automaton/State.java" />
+        <option value="$PROJECT_DIR$/src/ParserGenerator/file.cup" />
+        <option value="$PROJECT_DIR$/src/Automaton/TableException.java" />
+        <option value="$PROJECT_DIR$/src/Automaton/ParserTable.java" />
         <option value="$PROJECT_DIR$/src/ParserGenerator/Main.java" />
+        <option value="$PROJECT_DIR$/src/Automaton/DetalleProduccion.java" />
+        <option value="$PROJECT_DIR$/src/Automaton/Automaton.java" />
       </list>
     </option>
   </component>
@@ -252,8 +192,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
+    <option name="width" value="1932" />
     <option name="height" value="1048" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -288,7 +227,7 @@
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -301,105 +240,15 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ParserGenerator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ParserGenerator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LexerComponents" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Automaton" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/junit-4.12.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
-    <property name="SearchEverywhereHistoryKey" value="parser&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/Automaton/ParserTable.java&#10;aut&#9;PSI&#9;JAVA://Automaton.Automaton&#10;autom&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/Automaton/Automaton.java&#10;par&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/SyntacticComponents/Parser.java&#10;.cup&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/file.cup&#10;lexer&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/LexerComponents/Lexer.java&#10;parser\&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/SyntacticComponents/Parser.java&#10;main&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/Main.java&#10;MAIN&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/Main.java&#10;automaton&#9;FILE&#9;file:///Users/viramirez/Documents/Compiler/ParserGenerator/src/Automaton/Automaton.java&#10;cup&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ycalc.cup&#10;fle&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/lcalc.flex&#10;file&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/file.cup&#10;cu&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/file.cup&#10;table&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/SemanticComponents/SymbolTable.java" />
+    <property name="SearchEverywhereHistoryKey" value="auto&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/Automaton/Automaton.java&#10;state&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/Automaton/State.java&#10;main&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/Main.java&#10;parser&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/Automaton/ParserTable.java&#10;aut&#9;PSI&#9;JAVA://Automaton.Automaton&#10;autom&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/Automaton/Automaton.java&#10;par&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/SyntacticComponents/Parser.java&#10;.cup&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/file.cup&#10;lexer&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/LexerComponents/Lexer.java&#10;parser\&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/SyntacticComponents/Parser.java&#10;MAIN&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/Main.java&#10;automaton&#9;FILE&#9;file:///Users/viramirez/Documents/Compiler/ParserGenerator/src/Automaton/Automaton.java&#10;cup&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ycalc.cup&#10;fle&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/lcalc.flex&#10;file&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/file.cup&#10;cu&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/file.cup&#10;table&#9;FILE&#9;file://C:/Users/vicra/IdeaProjects/FlexCup/src/ParserGenerator/SemanticComponents/SymbolTable.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
   </component>
@@ -746,38 +595,38 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="0" width="1932" height="1048" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3216308" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3216308" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2751982" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32112068" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27389902" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23976293" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5164213" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32330826" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3272933" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -820,7 +669,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="229" />
+      <option name="time" value="258" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -834,13 +683,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ParserGenerator/TreeComponents/Statements/ImportStatementNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ParserGenerator/SemanticComponents/Types/BaseType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -918,13 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ParserGenerator/SemanticComponents/SymbolTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_121/src.zip!/java/util/ArrayList.java" />
     <entry file="file://$PROJECT_DIR$/src/Automaton/Automata.java" />
     <entry file="file://$PROJECT_DIR$/src/ParserGenerator/TreeComponents/Statements/UserCodeStatementNode.java">
@@ -949,13 +784,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dump.txt" />
-    <entry file="file://$PROJECT_DIR$/src/Automaton/ComponenteNormal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sym.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1054,21 +882,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Automaton/Transition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Automaton/DetalleProduccion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -1094,36 +907,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13980">
           <caret line="762" column="0" lean-forward="false" selection-start-line="762" selection-start-column="0" selection-end-line="762" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#84225#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#10144#10145#0" expanded="false" />
-            <element signature="e#10181#10182#0" expanded="false" />
-            <element signature="e#11991#11992#0" expanded="false" />
-            <element signature="e#12045#12046#0" expanded="false" />
-            <element signature="e#12720#12721#0" expanded="false" />
-            <element signature="e#12790#12791#0" expanded="false" />
-            <element signature="e#37807#37808#0" expanded="false" />
-            <element signature="e#37839#37840#0" expanded="false" />
-            <element signature="e#40716#40717#0" expanded="false" />
-            <element signature="e#40753#40754#0" expanded="false" />
-            <element signature="e#44527#44528#0" expanded="false" />
-            <element signature="e#44554#44555#0" expanded="false" />
-            <element signature="e#48436#48437#0" expanded="false" />
-            <element signature="e#48499#48500#0" expanded="false" />
-            <element signature="e#48546#48547#0" expanded="false" />
-            <element signature="e#48604#48605#0" expanded="false" />
-            <element signature="e#48747#48748#0" expanded="false" />
-            <element signature="e#48811#48812#0" expanded="false" />
-            <element signature="e#63283#63284#0" expanded="false" />
-            <element signature="e#63310#63311#0" expanded="false" />
-            <element signature="e#66057#66058#0" expanded="false" />
-            <element signature="e#66137#66138#0" expanded="false" />
-            <element signature="e#70537#70538#0" expanded="false" />
-            <element signature="e#70627#70628#0" expanded="false" />
-            <element signature="e#83683#83684#0" expanded="false" />
-            <element signature="e#83719#83720#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1132,7 +915,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1140,15 +922,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="22" column="23" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Automaton/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1156,33 +929,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Automaton/ParserTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="30" column="88" lean-forward="false" selection-start-line="30" selection-start-column="88" selection-end-line="30" selection-end-column="88" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ParserGenerator/file.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Automaton/Automaton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="69" column="37" lean-forward="false" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1194,20 +940,122 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Automaton/TableException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Automaton/ParserTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ParserGenerator/file.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Automaton/Componente.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
-          <caret line="5" column="11" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Automaton/ComponenteNormal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ParserGenerator/SemanticComponents/SymbolTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="e#399#400#0" expanded="true" />
+            <element signature="e#431#432#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Automaton/DetalleProduccion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+          <folding>
+            <element signature="e#303#304#0" expanded="true" />
+            <element signature="e#344#345#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Automaton/Transition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="11" lean-forward="false" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ParserGenerator/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="76" column="36" lean-forward="true" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="36" />
+        <state relative-caret-position="940">
+          <caret line="47" column="54" lean-forward="false" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Automaton/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="15" column="11" lean-forward="false" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Automaton/Automaton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="259" column="31" lean-forward="true" selection-start-line="259" selection-start-column="31" selection-end-line="259" selection-end-column="31" />
+          <folding>
+            <element signature="method#generateFirstState#0;class#Automaton#0" expanded="false" />
+            <element signature="method#generateStates#0;class#Automaton#0" expanded="false" />
+            <element signature="method#reduceStates#0;class#Automaton#0" expanded="false" />
+            <element signature="method#CompareStates#0;class#Automaton#0" expanded="false" />
+            <element signature="method#printAutomata#0;class#Automaton#0" expanded="false" />
+            <element signature="method#reorderDetalleProduccion#0;class#Automaton#0" expanded="false" />
+            <element signature="method#createNextState#0;class#Automaton#0" expanded="false" />
+            <element signature="method#getStateName#0;class#Automaton#0" expanded="false" />
+            <element signature="method#stateExists#0;class#Automaton#0" expanded="false" />
+            <element signature="method#StatesAreTheSame#0;class#Automaton#0" expanded="false" />
+            <element signature="method#statesAreEqual#0;class#Automaton#0" expanded="false" />
+            <element signature="method#goTo#0;class#Automaton#0" expanded="false" />
+            <element signature="method#GetClosure#0;class#Automaton#0" expanded="false" />
+            <element signature="method#GetLookAhead#0;class#Automaton#0" expanded="false" />
+            <element signature="method#minimizeGrammar#0;class#Automaton#0" expanded="false" />
+            <element signature="method#getFirst#0;class#Automaton#0" expanded="false" />
+            <element signature="method#getNext#0;class#Automaton#0" expanded="false" />
+            <element signature="method#getNextSymbols#0;class#Automaton#0" expanded="false" />
+            <element signature="method#getLeftSideProduction#0;class#Automaton#0" expanded="false" />
+            <element signature="method#isTerminalType#0;class#Automaton#0" expanded="false" />
+            <element signature="method#isNonTerminalType#0;class#Automaton#0" expanded="false" />
+            <element signature="method#getRightProductionsThatContainSymbol#0;class#Automaton#0" expanded="false" />
+            <element signature="method#OrderStatements#0;class#Automaton#0" expanded="false" />
+            <element signature="method#getProductionStatement#0;class#Automaton#0" expanded="false" />
+            <element signature="method#getMinimizedProductionStatement#0;class#Automaton#0" expanded="false" />
+            <element signature="method#getMinimizedAumentada#0;class#Automaton#0" expanded="false" />
           </folding>
         </state>
       </provider>

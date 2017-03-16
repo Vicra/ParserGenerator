@@ -17,4 +17,14 @@ public class State {
         componente = new ComponenteNormal();
         componente.Producciones = new ArrayList<>();
     }
+
+    public State clone(){
+        State returnState = new State();
+        returnState.name = this.name;
+        returnState.transitions = this.transitions;
+        returnState.componente.Producciones = this.componente.Producciones;
+        returnState.isAcceptanceState = this.isAcceptanceState;
+        returnState.isInitialState = this.isInitialState;
+        return returnState;
+    }
 }

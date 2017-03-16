@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class ParserTable {
 
-    public static RowSortedTable<Integer, String, String> getTable(ArrayList<State> states, ArrayList<Pair<String, ArrayList<ArrayList<String>>>> minimizedAutomata) throws SemanticException {
+    public static RowSortedTable<Integer, String, String> getTable(ArrayList<State> states, ArrayList<Pair<String, ArrayList<ArrayList<String>>>> minimizedAutomata) throws SemanticException, TableException {
         RowSortedTable<Integer, String, String> parserTable = TreeBasedTable.create();
         for (State stateIterator : states) {
 
@@ -22,6 +22,9 @@ public class ParserTable {
                 String column =  transition.symbol;
                 String stateName = transition.destiny;
                 BaseType type = SymbolTable.getInstance().GetType(column);
+                if (parserTable.get(stateIterator.name.replace("I",""), transition.symbol) != null){
+                    throw new TableException("Table Construction Error");
+                }
                 if (type instanceof TerminalType){
                     Integer row = Integer.parseInt(stateIterator.name.replace("I", ""));
                     String value = "S" + stateName.replace("I", "");
@@ -43,6 +46,9 @@ public class ParserTable {
                         if(detalleProduccion.LeftSideKey.equals("S'"))
                         {
                             Integer row = Integer.parseInt(stateIterator.name.replace("I", ""));
+                            if (parserTable.get(row, lookAhead) != null){
+                                throw new TableException("Table Construction Error");
+                            }
                             parserTable.put(row,lookAhead, "Accepted");
                         }
                         else
@@ -50,6 +56,9 @@ public class ParserTable {
                             ArrayList<Pair<String, ArrayList<String>>> simplifiedAutomata = simplifyGrammar(minimizedAutomata);
                             String reduction = getReduction(detalleProduccion, simplifiedAutomata);
                             Integer row = Integer.parseInt(stateIterator.name.replace("I", ""));
+                            if (parserTable.get(row, lookAhead) != null){
+                                throw new TableException("Table Construction Error");
+                            }
                             parserTable.put(row, lookAhead, reduction);
                         }
                     }

@@ -8,6 +8,13 @@ public class DetalleProduccion {
     public int puntero = 0;
     public ArrayList<String> conjunto = new ArrayList<>();
 
+    public DetalleProduccion(String leftSideKey){
+        LeftSideKey = leftSideKey;
+    }
+
+    public DetalleProduccion(){
+    }
+
     @Override
     public boolean equals(Object e){
         if (e == null)
