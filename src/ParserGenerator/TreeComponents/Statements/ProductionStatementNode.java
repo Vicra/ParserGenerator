@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class ProductionStatementNode extends StatementNode{
     @SerializedName("Left Side")
     public Token LeftHandSide;
-    @SerializedName("Right Side Productions")
+    @SerializedName("Right Side RightHandSide")
     public ArrayList<RightHandSideNode> RightHandSideList;
 
     public ProductionStatementNode(Token leftHandSide, ArrayList<RightHandSideNode> rightHandSideList){

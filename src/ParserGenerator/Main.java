@@ -1,75 +1,65 @@
 package ParserGenerator;
 
-import Automaton.Automaton;
-import Automaton.ParserTable;
-import Automaton.State;
+import Automata.Automata;
+import Automata.GrammarUtilies;
+import Automata.State;
+import Automata.GrammarDetail;
 import ParserGenerator.LexerComponents.Lexer;
 import ParserGenerator.SyntacticComponents.Parser;
 import ParserGenerator.TreeComponents.StatementNode;
+import ParserGenerator.TreeComponents.Statements.ProductionStatementNode;
 import com.google.common.collect.RowSortedTable;
 import com.google.gson.GsonBuilder;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-import javafx.util.Pair;
-import Automaton.ComponenteInicial;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
 public class Main {
+
     public static void main(String argv[]) throws Exception {
-        String cupFileContent = "";
-        try {
-            File file = new File("C:\\Users\\vicra\\IdeaProjects\\FlexCup\\src\\ParserGenerator\\file.cup");
-            //File file = new File( "/Users/viramirez/Documents/Compiler/ParserGenerator/src/ParserGenerator/file.cup");
-            FileInputStream fis = new FileInputStream(file);
-            byte[] data = new byte[(int) file.length()];
-            fis.read(data);
-            fis.close();
+//        String cupFileContent = "";
+//        try {
+//            File file = new File("C:\\Users\\vicra\\IdeaProjects\\FlexCup\\src\\RunProject\\ycalc.cup");
+//            //File file = new File( "/Users/viramirez/Documents/Compiler/ParserGenerator/src/ParserGenerator/file.cup");
+//            FileInputStream fis = new FileInputStream(file);
+//            byte[] data = new byte[(int) file.length()];
+//            fis.read(data);
+//            fis.close();
+//
+//            cupFileContent = new String(data, "UTF-8");
+//        } catch (Exception e) {
+//            System.out.print("error:" + e.getMessage());
+//        }
+//        /*          LEXER            */
+//        Lexer lexer = new Lexer(cupFileContent);
+//
+//        /*          PARSER            */
+//        Parser parser = new Parser(lexer);
+//        ArrayList<StatementNode> statements = parser.Parse();
+//
+//        /*          SEMANTIC            */
+//        for (StatementNode statement : statements) {
+//            statement.ValidateSemantic();
+//        }
+//
+//        ArrayList<ProductionStatementNode> productions = new ArrayList<>();
+//        for (StatementNode statementNode : statements){
+//            if (statementNode instanceof ProductionStatementNode){
+//                productions.add((ProductionStatementNode)statementNode);
+//            }
+//        }
+//
+//        /*          GENERATE AUTOMATA            */
+//        Automata automata = new Automata();
+//        ArrayList<State> thisStates = automata.generateAllStates(productions);
+//        System.out.println("");
+//
+//        /*          GENERATE TABLE            */
+//        ArrayList<GrammarDetail> grammarDetails = GrammarUtilies.getGrammarDetails(productions);
+//        RowSortedTable<String, String, String> table = ParserTable.getTable(thisStates, grammarDetails);
+//
+//        /*          GENERATE FILES             */
 
-            cupFileContent = new String(data, "UTF-8");
-        } catch (Exception e) {
-            System.out.print("error:" + e.getMessage());
-        }
-        /*          LEXER            */
-        Lexer lexer = new Lexer(cupFileContent);
-
-        /*          PARSER            */
-        Parser parser = new Parser(lexer);
-        ArrayList<StatementNode> statements = parser.Parse();
-
-        /*          SEMANTIC            */
-        for (StatementNode statement : statements) {
-            statement.ValidateSemantic();
-        }
-
-        /*          GENERATE AUTOMATA            */
-        Automaton automata = new Automaton(statements);
-        ArrayList<State> thisStates = automata.generateStates();
-
-        String cadena = automata.printAutomata(thisStates);
-//        System.out.println(getMinimizedGrammar(automata.MinimizedGrammar));
-        System.out.println(cadena);
-
-        /*          GENERATE TABLE            */
-        RowSortedTable<Integer, String, String> table =
-                ParserTable.getTable(thisStates, automata.MinimizedGrammar);
-        String tableString = new GsonBuilder().setPrettyPrinting().create().toJson(table);
-        System.out.println(tableString);
-    }
-
-    private static String getMinimizedGrammar(ArrayList<Pair<String, ArrayList<ArrayList<String>>>> minimizedGrammar) {
-        String cadena = "/*GRAMMAR*/\n";
-        for (Pair<String, ArrayList<ArrayList<String>>> pair : minimizedGrammar) {
-            for (ArrayList<String> array : pair.getValue()) {
-                cadena += pair.getKey();
-                cadena += "->";
-                for (String valor : array) {
-                    cadena += valor + " ";
-                }
-                cadena += "\n";
-            }
-        }
-        return cadena;
     }
 }

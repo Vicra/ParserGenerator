@@ -1,7 +1,0 @@
-non terminal E, T;
-terminal id, PLUS, LPAREN, RPAREN;
-
-E ::= T PLUS E | T;
-T ::= id | LPAREN E RPAREN;
-
-

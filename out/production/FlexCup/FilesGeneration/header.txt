@@ -1,0 +1,37 @@
+import com.google.common.collect.RowSortedTable;
+import com.google.common.collect.TreeBasedTable;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Stack;
+
+public class parser {
+    private RowSortedTable<String, String, String> table;
+    private ArrayList<GrammarDetail> productionDetails;
+    private Stack stack;
+    private MyLexer lexer;
+    private boolean next = false;
+
+    private class GrammarDetail {
+        public String LeftHandSide;
+        public ArrayList<String> RightHandSide;
+
+        public GrammarDetail(String producer, ArrayList<String> productions) {
+            LeftHandSide = producer;
+            RightHandSide = productions;
+        }
+    }
+
+    public class SyntaxException extends Exception
+    {
+        public SyntaxException(String message) {
+            super(message);
+        }
+    }
+
+    public parser(MyLexer lexer)
+    {
+        table = TreeBasedTable.create();
+        productionDetails = new ArrayList<>();
+        stack = new Stack();
+        this.lexer = lexer;

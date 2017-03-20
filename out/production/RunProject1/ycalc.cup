@@ -1,0 +1,8 @@
+non terminal E, T, expr_list, expr_part, expr, factor, term;
+terminal PLUS, LPAREN, RPAREN, PRINT, SEMI, EQUALS, MINUS, TIMES, DIVIDE, ID, NUMBER;
+
+expr_list ::= expr_list expr_part | expr_part;
+expr_part ::= PRINT expr SEMI  | ID EQUALS expr SEMI ;
+expr ::= expr PLUS factor | expr MINUS factor | factor;
+factor ::= factor TIMES term | factor DIVIDE term | term;
+term ::= LPAREN expr RPAREN | NUMBER | ID;

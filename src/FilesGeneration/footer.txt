@@ -1,0 +1,73 @@
+ }
+
+    public void parse() throws SyntaxException {
+        stack.push("0");
+        try
+        {
+            Symbol currentSymbol = lexer.yylex();
+            while(currentSymbol != null)
+            {
+                Object top = stack.peek();
+                String type = sym.terminalNames[currentSymbol.getType()];
+                if(!table.contains(top,type))
+                    throw new SyntaxException("Syntax error line: " + currentSymbol.getYyline() + " column: " + currentSymbol.getYycolumn());
+                String action = table.get(top,type);
+                doAction(action,currentSymbol.getValue());
+                if(stack.peek().equals("acc"))
+                    break;
+                if(next)
+                    currentSymbol = lexer.yylex();
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void doAction(String action, Object value) throws SyntaxException {
+        char a = action.charAt(0);
+        if(action.equals("acc"))
+        {
+            stack.push(action);
+            next = true;
+            return;
+        }
+        switch (a)
+        {
+            case 's':
+                stack.push(value);
+                stack.push(action.replace("s",""));
+                next = true;
+                break;
+            case 'r':
+                Integer r = Integer.parseInt(action.replace("r",""));
+                GrammarDetail grammarLine = productionDetails.get(r - 1);
+                Integer magnitude = 0;
+                if(grammarLine.RightHandSide.size() > 1)
+                    magnitude = grammarLine.RightHandSide.size();
+                else if(!grammarLine.RightHandSide.get(0).equals("ɛ"))
+                    magnitude = 1;
+                DoReduction(r, magnitude);
+                if(!table.contains(stack.elementAt(stack.size()-2),grammarLine.LeftHandSide))
+                    throw new SyntaxException("Syntax error");
+                stack.push(table.get(stack.elementAt(stack.size()-2),grammarLine.LeftHandSide));
+                next = false;
+                break;
+
+        }
+    }
+
+    private void pop(Integer magnitude)
+    {
+        for(Integer i = 0; i < magnitude * 2; i++)
+        {
+            stack.pop();
+        }
+    }
+
+    private void DoReduction(Integer r, Integer magnitude)
+    {
+        Object RESULT = null;
+        switch (r)
+        {

@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FlexCup.iml" filepath="$PROJECT_DIR$/FlexCup.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RunProject/RunProject.iml" filepath="$PROJECT_DIR$/RunProject/RunProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RunProject1/RunProject1.iml" filepath="$PROJECT_DIR$/RunProject1/RunProject1.iml" />
     </modules>
   </component>
 </project>
