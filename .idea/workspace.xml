@@ -2,36 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0f0e853-eedb-4e50-9f39-7a63d0c364cb" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/Automaton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/Componente.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/ComponenteInicial.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/ComponenteNormal.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/DetalleProduccion.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/ParserTable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/State.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/TableException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automaton/Transition.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FlexCup/ParserGenerator/file.cup" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Automaton/Automaton.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Automaton/Componente.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Automaton/ComponenteInicial.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Automaton/ComponenteNormal.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Automaton/DetalleProduccion.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Automaton/ParserTable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Automaton/State.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Automaton/TableException.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Automaton/Transition.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ParserGenerator/file.cup" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/ParserGenerator/Main.class" afterPath="$PROJECT_DIR$/out/production/FlexCup/ParserGenerator/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/ParserGenerator/TreeComponents/Statements/ProductionStatementNode.class" afterPath="$PROJECT_DIR$/out/production/FlexCup/ParserGenerator/TreeComponents/Statements/ProductionStatementNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/ParserGenerator/TreeComponents/Statements/RightHandSideNode.class" afterPath="$PROJECT_DIR$/out/production/FlexCup/ParserGenerator/TreeComponents/Statements/RightHandSideNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/RunProject1/parser$GrammarDetail.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/Automata/Automata.class" afterPath="$PROJECT_DIR$/out/production/FlexCup/Automata/Automata.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/FilesGeneration/ParserFileGeneration.class" afterPath="$PROJECT_DIR$/out/production/FlexCup/FilesGeneration/ParserFileGeneration.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/RunProject1/parser.class" afterPath="$PROJECT_DIR$/out/production/RunProject1/parser.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/automata.txt" afterPath="$PROJECT_DIR$/automata.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ParserGenerator/Main.java" afterPath="$PROJECT_DIR$/src/ParserGenerator/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ParserGenerator/TreeComponents/Statements/ProductionStatementNode.java" afterPath="$PROJECT_DIR$/src/ParserGenerator/TreeComponents/Statements/ProductionStatementNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ParserGenerator/TreeComponents/Statements/RightHandSideNode.java" afterPath="$PROJECT_DIR$/src/ParserGenerator/TreeComponents/Statements/RightHandSideNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lcalc.flex" afterPath="$PROJECT_DIR$/src/lcalc.flex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunProject1/src/parser.java" afterPath="$PROJECT_DIR$/RunProject1/src/parser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/FilesGeneration/footer.txt" afterPath="$PROJECT_DIR$/out/production/FlexCup/FilesGeneration/footer.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FlexCup/FilesGeneration/header.txt" afterPath="$PROJECT_DIR$/out/production/FlexCup/FilesGeneration/header.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/RunProject1/input.txt" afterPath="$PROJECT_DIR$/out/production/RunProject1/input.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automata/Automata.java" afterPath="$PROJECT_DIR$/src/Automata/Automata.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FilesGeneration/ParserFileGeneration.java" afterPath="$PROJECT_DIR$/src/FilesGeneration/ParserFileGeneration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FilesGeneration/footer.txt" afterPath="$PROJECT_DIR$/src/FilesGeneration/footer.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FilesGeneration/header.txt" afterPath="$PROJECT_DIR$/src/FilesGeneration/header.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,8 +41,8 @@
       <file leaf-file-name="footer.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FilesGeneration/footer.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
-              <caret line="44" column="61" lean-forward="false" selection-start-line="44" selection-start-column="61" selection-end-line="44" selection-end-column="61" />
+            <state relative-caret-position="425">
+              <caret line="50" column="24" lean-forward="false" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -68,28 +51,28 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RunProject1/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+            <state relative-caret-position="204">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FilesGeneration/header.txt">
+      <file leaf-file-name="MainWindow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Swing/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="54" lean-forward="false" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="54" />
+            <state relative-caret-position="357">
+              <caret line="219" column="13" lean-forward="true" selection-start-line="219" selection-start-column="13" selection-end-line="219" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParserFileGeneration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FilesGeneration/ParserFileGeneration.java">
+      <file leaf-file-name="parser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RunProject1/src/parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
-              <caret line="65" column="13" lean-forward="true" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
+            <state relative-caret-position="280">
+              <caret line="255" column="31" lean-forward="true" selection-start-line="255" selection-start-column="31" selection-end-line="255" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -97,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ycalc.cup" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RunProject1/src/ycalc.cup">
+      <file leaf-file-name="header.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/FilesGeneration/header.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="374">
+              <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -111,39 +94,37 @@
         <entry file="file://$PROJECT_DIR$/RunProject1/src/input.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="11" lean-forward="true" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+              <caret line="0" column="11" lean-forward="false" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SymFileGeneration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FilesGeneration/SymFileGeneration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ParserTable.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ParserGenerator/ParserTable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-206">
-              <caret line="22" column="37" lean-forward="true" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TableException.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ParserGenerator/TableException.java">
+      <file leaf-file-name="Label.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Automata/Label.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
               <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductionDetail.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Automata/ProductionDetail.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductionsUtilities.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Automata/ProductionsUtilities.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="26" column="54" lean-forward="false" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -171,36 +152,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Automata.State</find>
-      <find>frame</find>
-      <find>s_prime</find>
-      <find>F</find>
       <find>node</find>
       <find>yylex</find>
       <find>num</find>
       <find>EQUALS</find>
       <find>parser</find>
       <find>doAction</find>
-      <find>DoReduction</find>
       <find>String action</find>
-      <find>grammarLine</find>
       <find>system</find>
       <find>Grammar</find>
       <find>Lex</find>
       <find>GrammarLine</find>
       <find>Producer</find>
       <find>Productions</find>
-      <find>s</find>
       <find>peek</find>
       <find>Accepted</find>
       <find>lexer</find>
-      <find>GrammarDetail</find>
       <find>tope</find>
       <find>ParserException</find>
       <find>int</find>
       <find>List</find>
       <find>PopStack</find>
       <find>grammarLines</find>
+      <find>action</find>
+      <find>grammarLine</find>
+      <find>DoReduction</find>
+      <find>a</find>
+      <find>r</find>
+      <find>GrammarDetail</find>
+      <find>s</find>
+      <find>tablePut</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -259,8 +240,8 @@
         <option value="$PROJECT_DIR$/src/Automata/GrammarUtilies.java" />
         <option value="$PROJECT_DIR$/src/Automata/GrammarDetail.java" />
         <option value="$PROJECT_DIR$/src/Automata/ProductionsUtilities.java" />
-        <option value="$PROJECT_DIR$/RunProject1/src/parser.java" />
         <option value="$PROJECT_DIR$/src/FilesGeneration/header.txt" />
+        <option value="$PROJECT_DIR$/RunProject1/src/parser.java" />
         <option value="$PROJECT_DIR$/src/FilesGeneration/footer.txt" />
         <option value="$PROJECT_DIR$/src/FilesGeneration/ParserFileGeneration.java" />
         <option value="$PROJECT_DIR$/src/Automata/Automata.java" />
@@ -277,7 +258,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
-    <option name="width" value="1938" />
+    <option name="width" value="1932" />
     <option name="height" value="1048" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -326,6 +307,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
@@ -392,42 +374,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ParserGenerator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FilesGeneration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FlexCup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="RunProject1" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -452,7 +398,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -844,7 +789,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1932" height="1048" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -862,7 +807,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2593985" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26293105" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -935,12 +880,6 @@
           <properties />
           <option name="timeStamp" value="321" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/RunProject1/src/parser.java</url>
-          <line>266</line>
-          <properties />
-          <option name="timeStamp" value="324" />
-        </line-breakpoint>
       </breakpoints>
       <option name="time" value="325" />
     </breakpoint-manager>
@@ -985,7 +924,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1061,30 +999,9 @@
     <entry file="file://$PROJECT_DIR$/src/RunProject/MyLexer.java" />
     <entry file="file://$PROJECT_DIR$/src/RunProject/Symbol.java" />
     <entry file="file://$PROJECT_DIR$/src/RunProject/ycalc.cup" />
-    <entry file="file://$PROJECT_DIR$/src/RunProject/sym.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="28" column="43" lean-forward="true" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="245" column="33" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="384" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sym.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RunProject/sym.java" />
+    <entry file="file://$PROJECT_DIR$/parser.java" />
+    <entry file="file://$PROJECT_DIR$/sym.java" />
     <entry file="file://$PROJECT_DIR$/src/ParserGenerator/TreeComponents/Statements/SymbolListStatements/TerminalDeclarationNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1115,22 +1032,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ParserGenerator/TableException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Swing/MainWindow.java">
+    <entry file="file://$PROJECT_DIR$/src/ParserGenerator/ParserTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="211" column="38" lean-forward="false" selection-start-line="211" selection-start-column="38" selection-end-line="211" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RunProject1/src/lcal.flex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="238">
+          <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1143,21 +1059,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RunProject1/src/parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3638">
-          <caret line="214" column="41" lean-forward="false" selection-start-line="214" selection-start-column="30" selection-end-line="214" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#824#825#0" expanded="true" />
-            <element signature="e#862#863#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RunProject1/src/sym.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
+        <state relative-caret-position="255">
           <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
           <folding />
         </state>
@@ -1173,10 +1077,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/RunProject1/src/lcal.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-26">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunProject1/src/ycalc.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FilesGeneration/SymFileGeneration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FilesGeneration/ParserFileGeneration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="17" lean-forward="true" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Automata/Automata.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="28" column="48" lean-forward="false" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+        <state relative-caret-position="2856">
+          <caret line="177" column="33" lean-forward="false" selection-start-line="177" selection-start-column="33" selection-end-line="177" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -1191,7 +1131,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Automata/GrammarUtilies.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1734">
+        <state relative-caret-position="816">
           <caret line="115" column="25" lean-forward="false" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
           <folding />
         </state>
@@ -1229,70 +1169,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FilesGeneration/footer.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="44" column="61" lean-forward="false" selection-start-line="44" selection-start-column="61" selection-end-line="44" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FilesGeneration/ParserFileGeneration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="65" column="13" lean-forward="true" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FilesGeneration/SymFileGeneration.java">
+    <entry file="file://$PROJECT_DIR$/src/FilesGeneration/header.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FilesGeneration/footer.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="50" column="24" lean-forward="false" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Swing/MainWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="219" column="13" lean-forward="true" selection-start-line="219" selection-start-column="13" selection-end-line="219" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunProject1/src/parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="255" column="31" lean-forward="true" selection-start-line="255" selection-start-column="31" selection-end-line="255" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ParserGenerator/TableException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ParserGenerator/ParserTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-206">
-          <caret line="22" column="37" lean-forward="true" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RunProject1/src/ycalc.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RunProject1/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FilesGeneration/header.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="54" lean-forward="false" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="54" />
+        <state relative-caret-position="204">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1300,7 +1214,7 @@
     <entry file="file://$PROJECT_DIR$/RunProject1/src/input.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="11" lean-forward="true" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+          <caret line="0" column="11" lean-forward="false" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
           <folding />
         </state>
       </provider>

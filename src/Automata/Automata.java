@@ -22,7 +22,6 @@ public class Automata {
     private static Map<String, ArrayList<String>> allLookUps = new HashMap<>();
     public ArrayList<GrammarDetail> minimizedGrammar;
 
-
     public ArrayList<State> generateAllStates(ArrayList<ProductionStatementNode> productionStatements) throws Exception {
         minimizedGrammar = minimizeGrammar(productionStatements);
         ArrayList<ProductionStatementNode> productionStatementNodes = new ArrayList<>();

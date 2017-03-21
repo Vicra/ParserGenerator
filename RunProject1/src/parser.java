@@ -7,16 +7,16 @@ import java.util.Stack;
 
 public class parser {
     private RowSortedTable<String, String, String> table;
-    private ArrayList<GrammarDetail> productionDetails;
+    private ArrayList<Production> productionDetails;
     private Stack stack;
     private MyLexer lexer;
     private boolean next = false;
 
-    private class GrammarDetail {
+    private class Production {
         public String LeftHandSide;
         public ArrayList<String> RightHandSide;
 
-        public GrammarDetail(String producer, ArrayList<String> productions) {
+        public Production(String producer, ArrayList<String> productions) {
             LeftHandSide = producer;
             RightHandSide = productions;
         }
@@ -155,19 +155,19 @@ public class parser {
 		table.put("9", "expr", "18");
 		table.put("9", "factor", "7");
 		table.put("9", "term", "8");
-		productionDetails.add(new GrammarDetail("expr_list",new ArrayList<>(Arrays.asList("expr_list", "expr_part"))));
-		productionDetails.add(new GrammarDetail("expr_list",new ArrayList<>(Arrays.asList("expr_part"))));
-		productionDetails.add(new GrammarDetail("expr_part",new ArrayList<>(Arrays.asList("PRINT", "expr", "SEMI"))));
-		productionDetails.add(new GrammarDetail("expr_part",new ArrayList<>(Arrays.asList("ID", "EQUALS", "expr", "SEMI"))));
-		productionDetails.add(new GrammarDetail("expr",new ArrayList<>(Arrays.asList("expr", "PLUS", "factor"))));
-		productionDetails.add(new GrammarDetail("expr",new ArrayList<>(Arrays.asList("expr", "MINUS", "factor"))));
-		productionDetails.add(new GrammarDetail("expr",new ArrayList<>(Arrays.asList("factor"))));
-		productionDetails.add(new GrammarDetail("factor",new ArrayList<>(Arrays.asList("factor", "TIMES", "term"))));
-		productionDetails.add(new GrammarDetail("factor",new ArrayList<>(Arrays.asList("factor", "DIVIDE", "term"))));
-		productionDetails.add(new GrammarDetail("factor",new ArrayList<>(Arrays.asList("term"))));
-		productionDetails.add(new GrammarDetail("term",new ArrayList<>(Arrays.asList("LPAREN", "expr", "RPAREN"))));
-		productionDetails.add(new GrammarDetail("term",new ArrayList<>(Arrays.asList("NUMBER"))));
-		productionDetails.add(new GrammarDetail("term",new ArrayList<>(Arrays.asList("ID"))));
+		productionDetails.add(new Production("expr_list",new ArrayList<>(Arrays.asList("expr_list", "expr_part"))));
+		productionDetails.add(new Production("expr_list",new ArrayList<>(Arrays.asList("expr_part"))));
+		productionDetails.add(new Production("expr_part",new ArrayList<>(Arrays.asList("PRINT", "expr", "SEMI"))));
+		productionDetails.add(new Production("expr_part",new ArrayList<>(Arrays.asList("ID", "EQUALS", "expr", "SEMI"))));
+		productionDetails.add(new Production("expr",new ArrayList<>(Arrays.asList("expr", "PLUS", "factor"))));
+		productionDetails.add(new Production("expr",new ArrayList<>(Arrays.asList("expr", "MINUS", "factor"))));
+		productionDetails.add(new Production("expr",new ArrayList<>(Arrays.asList("factor"))));
+		productionDetails.add(new Production("factor",new ArrayList<>(Arrays.asList("factor", "TIMES", "term"))));
+		productionDetails.add(new Production("factor",new ArrayList<>(Arrays.asList("factor", "DIVIDE", "term"))));
+		productionDetails.add(new Production("factor",new ArrayList<>(Arrays.asList("term"))));
+		productionDetails.add(new Production("term",new ArrayList<>(Arrays.asList("LPAREN", "expr", "RPAREN"))));
+		productionDetails.add(new Production("term",new ArrayList<>(Arrays.asList("NUMBER"))));
+		productionDetails.add(new Production("term",new ArrayList<>(Arrays.asList("ID"))));
  }
 
     public void parse() throws SyntaxException {
@@ -179,52 +179,22 @@ public class parser {
             {
                 Object top = stack.peek();
                 String type = sym.terminalNames[currentSymbol.getType()];
-                if(!table.contains(top,type))
+                if(!table.contains(top,type)){
                     throw new SyntaxException("Syntax error line: " + currentSymbol.getYyline() + " column: " + currentSymbol.getYycolumn());
+                }
                 String action = table.get(top,type);
                 doAction(action,currentSymbol.getValue());
-                if(stack.peek().equals("acc"))
+                if(stack.peek().equals("acc")){
                     break;
-                if(next)
+                }
+                if(next){
                     currentSymbol = lexer.yylex();
+                }
             }
         }
         catch (IOException e)
         {
             e.printStackTrace();
-        }
-    }
-
-    private void doAction(String action, Object value) throws SyntaxException {
-        char a = action.charAt(0);
-        if(action.equals("acc"))
-        {
-            stack.push(action);
-            next = true;
-            return;
-        }
-        switch (a)
-        {
-            case 's':
-                stack.push(value);
-                stack.push(action.replace("s",""));
-                next = true;
-                break;
-            case 'r':
-                Integer r = Integer.parseInt(action.replace("r",""));
-                GrammarDetail grammarLine = productionDetails.get(r - 1);
-                Integer magnitude = 0;
-                if(grammarLine.RightHandSide.size() > 1)
-                    magnitude = grammarLine.RightHandSide.size();
-                else if(!grammarLine.RightHandSide.get(0).equals("ɛ"))
-                    magnitude = 1;
-                DoReduction(r, magnitude);
-                if(!table.contains(stack.elementAt(stack.size()-2),grammarLine.LeftHandSide))
-                    throw new SyntaxException("Syntax error");
-                stack.push(table.get(stack.elementAt(stack.size()-2),grammarLine.LeftHandSide));
-                next = false;
-                break;
-
         }
     }
 
@@ -236,10 +206,44 @@ public class parser {
         }
     }
 
-    private void DoReduction(Integer r, Integer magnitude)
+    private void doAction(String action, Object value) throws SyntaxException {
+        char firstCharacter = action.charAt(0);
+        if(action.equals("acc"))
+        {
+            stack.push(action);
+            next = true;
+            return;
+        }
+        if(firstCharacter == 's'){
+            stack.push(value);
+            String indexGramatica = action.replace("s","");
+            stack.push(indexGramatica);
+            next = true;
+        }
+        else if(firstCharacter == 'r'){
+            String indexGramatica2 = action.replace("r","");
+            Integer grammarIndex = Integer.parseInt(indexGramatica2);
+            Production production = productionDetails.get(grammarIndex - 1);
+            Integer magnitude = 0;
+            if(production.RightHandSide.size() > 1){
+                magnitude = production.RightHandSide.size();
+            }
+            else if(!production.RightHandSide.get(0).equals("ɛ")){
+                magnitude = 1;
+            }
+            reductionCases(grammarIndex, magnitude);
+            if(!table.contains(stack.elementAt(stack.size()-2),production.LeftHandSide)){
+                throw new SyntaxException("Syntax error");
+            }
+            stack.push(table.get(stack.elementAt(stack.size()-2),production.LeftHandSide));
+            next = false;
+        }
+    }
+
+    private void reductionCases(Integer grammarIndex, Integer magnitude)
     {
         Object RESULT = null;
-        switch (r)
+        switch (grammarIndex)
         {
 			case 1:
 			{

@@ -13,21 +13,18 @@ public class ParserFileGeneration {
         String top = "";
         String bottom = "";
         String fileContent = "";
-        for (ImportStatementNode importIdNode : importList)
-        {
+        for (ImportStatementNode importStatementNode : importList) {
             fileContent += "import ";
-            for(Integer i =0; i< importIdNode.ImportIdentifiers.size();i++){
-                if (i == importIdNode.ImportIdentifiers.size()-1){
-                    fileContent += importIdNode.ImportIdentifiers.get(i);
-                }
-                else{
-                    fileContent += importIdNode.ImportIdentifiers.get(i) + ".";
+            for (Integer i = 0; i < importStatementNode.ImportIdentifiers.size(); i++) {
+                if (i == importStatementNode.ImportIdentifiers.size() - 1) {
+                    fileContent += importStatementNode.ImportIdentifiers.get(i);
+                } else {
+                    fileContent += importStatementNode.ImportIdentifiers.get(i) + ".";
                 }
             }
             fileContent += ";\n";
         }
-        try
-        {
+        try {
             File file = new File("src//FilesGeneration//header.txt");
             FileInputStream fis = new FileInputStream(file);
             byte[] data = new byte[(int) file.length()];
@@ -41,44 +38,37 @@ public class ParserFileGeneration {
             fis.read(data);
             fis.close();
             bottom = new String(data, "UTF-8");
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.print("error:" + e.getMessage());
         }
         fileContent += top;
-        for (String row : table.rowKeySet())
-        {
-            for(String column : table.columnKeySet())
-            {
-                if(table.contains(row,column))
-                {
-                    String s = "\t\ttable.put(\"" + row + "\", \"" + column + "\", \"" + table.get(row,column) + "\");\n";
-                    fileContent += s;
+        for (String row : table.rowKeySet()) {
+            for (String column : table.columnKeySet()) {
+                if (table.contains(row, column)) {
+                    String tablePut = "\t\ttable.put(\"" + row + "\", \"" + column + "\", \"" + table.get(row, column) + "\");\n";
+                    fileContent += tablePut;
                 }
             }
         }
 
-        for(GrammarDetail productionLine : productionDetails)
-        {
-            String s = "\t\tproductionDetails.add(new GrammarDetail(\"" + productionLine.LeftHandSideKey + "\",new ArrayList<>(Arrays.asList(";
+        for (GrammarDetail productionLine : productionDetails) {
+            String addProduction = "\t\tproductionDetails.add(new Production(\"" + productionLine.LeftHandSideKey + "\",new ArrayList<>(Arrays.asList(";
             String suffix = "\"";
-            for(String p : productionLine.RightHandSide)
-            {
-                s += suffix;
+            for (String rightHandSideToken : productionLine.RightHandSide) {
+                addProduction += suffix;
                 suffix = "\", \"";
-                s += p;
+                addProduction += rightHandSideToken;
             }
-            s += "\"))));\n";
-            fileContent += s;
+            addProduction += "\"))));\n";
+            fileContent += addProduction;
         }
         fileContent += bottom;
 
-        for(Integer i = 0; i < productionDetails.size(); i++)
-        {
-            String s = "\n\t\t\tcase " + (i + 1) + ":\n\t\t\t{";
-            s = s + "\n\t\t\t\tpop(magnitude);";
-            s = s + "\n\t\t\t\tstack.push(RESULT);\n\t\t\t\treturn;\n\t\t\t}";
-            fileContent += s;
+        for (Integer i = 0; i < productionDetails.size(); i++) {
+            String casePopPush = "\n\t\t\tcase " + (i + 1) + ":\n\t\t\t{";
+            casePopPush = casePopPush + "\n\t\t\t\tpop(magnitude);";
+            casePopPush = casePopPush + "\n\t\t\t\tstack.push(RESULT);\n\t\t\t\treturn;\n\t\t\t}";
+            fileContent += casePopPush;
         }
         fileContent += "\n\t\t\tdefault:\n\t\t\t\treturn;\n\t\t}\n\t}\n}";
 
