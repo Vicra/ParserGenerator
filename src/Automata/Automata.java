@@ -202,7 +202,8 @@ public class Automata {
                     if (currentProductionDetail.Pointer < currentProductionDetail.RightHandSideProductions.size()) {
                         if (!doneSymbols.contains(currentProductionDetail.RightHandSideProductions.get(currentProductionDetail.Pointer))) {
                             if (SymbolTable.getInstance().GetType(currentProductionDetail.RightHandSideProductions.get(currentProductionDetail.Pointer)) instanceof NonterminalType) {
-                                state.Productions.addAll(getClosure(currentProductionDetail, grammarTable, rhsGrammarTable));
+                                ArrayList<ProductionDetail> closure = getClosure(currentProductionDetail, grammarTable, rhsGrammarTable);
+                                state.Productions.addAll(closure);
                                 doneSymbols.add(currentProductionDetail.RightHandSideProductions.get(currentProductionDetail.Pointer));
                             }
                         }
@@ -283,7 +284,8 @@ public class Automata {
                     }
                     if (SymbolTable.getInstance().GetType(toAdd.RightHandSideProductions.get(toAdd.Pointer)) instanceof NonterminalType
                             && !toAdd.RightHandSideProductions.get(toAdd.Pointer).equals(postDot)) {
-                        closure.addAll(getClosure(toAdd, productionMap, rhsGrammarTable));
+                        ArrayList<ProductionDetail> myClosure = getClosure(toAdd, productionMap, rhsGrammarTable) ;
+                        closure.addAll(myClosure);
                     }
                 }
             }

@@ -145,7 +145,7 @@ public class Lexer {
         lexeme += currentCharacter;
         MovePointer(1);
         char nextCharacter = getCurrentCharacter();
-        while (Character.isLetterOrDigit(nextCharacter) || nextCharacter == '_')
+        while (Character.isLetterOrDigit(nextCharacter) || nextCharacter == '_' || nextCharacter == '<' || nextCharacter == '>')
         {
             lexeme += nextCharacter;
             MovePointer(1);

@@ -1,3 +1,4 @@
+import Tree.*;
 import com.google.common.collect.RowSortedTable;
 import com.google.common.collect.TreeBasedTable;
 import java.io.IOException;
@@ -247,79 +248,130 @@ public class parser {
         {
 			case 1:
 			{
+				ArrayList<ExpressionPart> l;
+				ExpressionPart a;
+				l = (ArrayList<ExpressionPart>) stack.elementAt(stack.size() - 4);
+				a = (ExpressionPart) stack.elementAt(stack.size() - 2);
 				pop(magnitude);
+				   l.add(a); RESULT = l;   
 				stack.push(RESULT);
 				return;
 			}
 			case 2:
 			{
+				ExpressionPart e;
+				e = (ExpressionPart) stack.elementAt(stack.size() - 2);
 				pop(magnitude);
+				   ArrayList<ExpressionPart> myList = new ArrayList(); myList.add(e); RESULT = myList;   
 				stack.push(RESULT);
 				return;
 			}
 			case 3:
 			{
+				Expression e;
+				e = (Expression) stack.elementAt(stack.size() - 4);
 				pop(magnitude);
+				   RESULT = new PrintNode(e);   
 				stack.push(RESULT);
 				return;
 			}
 			case 4:
 			{
+				String i;
+				Expression e;
+				i = (String) stack.elementAt(stack.size() - 8);
+				e = (Expression) stack.elementAt(stack.size() - 4);
 				pop(magnitude);
+				   RESULT = new AssignmentNode(i, e);   
 				stack.push(RESULT);
 				return;
 			}
 			case 5:
 			{
+				Expression e;
+				Expression f;
+				e = (Expression) stack.elementAt(stack.size() - 6);
+				f = (Expression) stack.elementAt(stack.size() - 2);
 				pop(magnitude);
+				   RESULT = new AdditionNode(e, f);   
 				stack.push(RESULT);
 				return;
 			}
 			case 6:
 			{
+				Expression e;
+				Expression f;
+				e = (Expression) stack.elementAt(stack.size() - 6);
+				f = (Expression) stack.elementAt(stack.size() - 2);
 				pop(magnitude);
+				   RESULT = new SubstractionNode(e, f);   
 				stack.push(RESULT);
 				return;
 			}
 			case 7:
 			{
+				Expression f;
+				f = (Expression) stack.elementAt(stack.size() - 2);
 				pop(magnitude);
+				   RESULT = f;  
 				stack.push(RESULT);
 				return;
 			}
 			case 8:
 			{
+				Expression f;
+				Expression t;
+				f = (Expression) stack.elementAt(stack.size() - 6);
+				t = (Expression) stack.elementAt(stack.size() - 2);
 				pop(magnitude);
+				   RESULT = new MultiplicationNode(f, t);   
 				stack.push(RESULT);
 				return;
 			}
 			case 9:
 			{
+				Expression f;
+				Expression t;
+				f = (Expression) stack.elementAt(stack.size() - 6);
+				t = (Expression) stack.elementAt(stack.size() - 2);
 				pop(magnitude);
+				   RESULT  = new DivisionNode(f, t);   
 				stack.push(RESULT);
 				return;
 			}
 			case 10:
 			{
+				Expression t;
+				t = (Expression) stack.elementAt(stack.size() - 2);
 				pop(magnitude);
+				   RESULT = t;   
 				stack.push(RESULT);
 				return;
 			}
 			case 11:
 			{
+				Expression e;
+				e = (Expression) stack.elementAt(stack.size() - 4);
 				pop(magnitude);
+				   RESULT = e;   
 				stack.push(RESULT);
 				return;
 			}
 			case 12:
 			{
+				Integer n;
+				n = (Integer) stack.elementAt(stack.size() - 2);
 				pop(magnitude);
+				   RESULT = new NumberNode(n);   
 				stack.push(RESULT);
 				return;
 			}
 			case 13:
 			{
+				String i;
+				i = (String) stack.elementAt(stack.size() - 2);
 				pop(magnitude);
+				   RESULT = new IdNode(i);   
 				stack.push(RESULT);
 				return;
 			}

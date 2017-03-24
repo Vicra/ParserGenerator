@@ -1,8 +1,26 @@
-non terminal E, T, expr_list, expr_part, expr, factor, term;
-terminal PLUS, LPAREN, RPAREN, PRINT, SEMI, EQUALS, MINUS, TIMES, DIVIDE, ID, NUMBER;
+non terminal ArrayList<ExpressionPart> expr_list;
+non terminal ExpressionPart expr_part;
+non terminal Expression expr, factor, term;
 
-expr_list ::= expr_list expr_part | expr_part;
-expr_part ::= PRINT expr SEMI  | ID EQUALS expr SEMI ;
-expr ::= expr PLUS factor | expr MINUS factor | factor;
-factor ::= factor TIMES term | factor DIVIDE term | term;
-term ::= LPAREN expr RPAREN | NUMBER | ID;
+terminal PLUS, LPAREN, RPAREN, PRINT, SEMI, EQUALS, MINUS, TIMES, DIVIDE;
+terminal String ID;
+terminal Integer NUMBER;
+
+expr_list ::= expr_list:l expr_part:a {: l.add(a); RESULT = l; :}
+        | expr_part:e {: ArrayList<ExpressionPart> myList = new ArrayList(); myList.add(e); RESULT = myList; :};
+
+expr_part ::= PRINT expr:e SEMI     {: RESULT = new PrintNode(e); :}
+        | ID:i EQUALS expr:e SEMI   {: RESULT = new AssignmentNode(i, e); :};
+
+expr ::= expr:e PLUS factor:f       {: RESULT = new AdditionNode(e, f); :}
+        | expr:e MINUS factor:f     {: RESULT = new SubstractionNode(e, f); :}
+        | factor:f                  {: RESULT = f;:};
+
+factor ::= factor:f TIMES term:t    {: RESULT = new MultiplicationNode(f, t); :}
+        | factor:f DIVIDE term:t    {: RESULT  = new DivisionNode(f, t); :}
+        | term:t                    {: RESULT = t; :};
+
+term ::= LPAREN expr:e RPAREN       {: RESULT = e; :}
+        | NUMBER:n                  {: RESULT = new NumberNode(n); :}
+        | ID:i                      {: RESULT = new IdNode(i); :};
+

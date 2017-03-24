@@ -1,6 +1,7 @@
 package FilesGeneration;
 
 import Automata.GrammarDetail;
+import Automata.Label;
 import ParserGenerator.TreeComponents.Statements.ImportStatementNode;
 import com.google.common.collect.RowSortedTable;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 public class ParserFileGeneration {
     public static void generate(RowSortedTable<String, String, String> table, ArrayList<GrammarDetail> productionDetails, ArrayList<ImportStatementNode> importList) throws FileNotFoundException, UnsupportedEncodingException {
 
-        String top = "";
+        String top = "import Tree.*;\n";
         String bottom = "";
         String fileContent = "";
         for (ImportStatementNode importStatementNode : importList) {
@@ -30,7 +31,7 @@ public class ParserFileGeneration {
             byte[] data = new byte[(int) file.length()];
             fis.read(data);
             fis.close();
-            top = new String(data, "UTF-8");
+            top += new String(data, "UTF-8");
 
             file = new File("src//FilesGeneration//footer.txt");
             fis = new FileInputStream(file);
@@ -66,7 +67,27 @@ public class ParserFileGeneration {
 
         for (Integer i = 0; i < productionDetails.size(); i++) {
             String casePopPush = "\n\t\t\tcase " + (i + 1) + ":\n\t\t\t{";
+            for (Label lable : productionDetails.get(i).LabelList)
+            {
+                casePopPush = casePopPush + "\n\t\t\t\t" + lable.Type + " " + lable.Name + ";" ;
+            }
+            for (Label lable : productionDetails.get(i).LabelList)
+            {
+                casePopPush = casePopPush + "\n\t\t\t\t" + lable.Name + " = ";
+                if(!lable.Type.equals("Object"))
+                {
+                    casePopPush = casePopPush + "(" + lable.Type + ") ";
+                }
+                casePopPush = casePopPush + "stack.elementAt(stack.size() - " + (2 * (productionDetails.get(i).RightHandSide.size() - lable.position)) + ");";
+            }
             casePopPush = casePopPush + "\n\t\t\t\tpop(magnitude);";
+            for(String javaCode : productionDetails.get(i).JavaCodeList)
+            {
+                String java = javaCode.replace('{',' ');
+                java = java.replace('}',' ');
+                java = java.replace(':' , ' ');
+                casePopPush = casePopPush + "\n\t\t\t\t" + java;
+            }
             casePopPush = casePopPush + "\n\t\t\t\tstack.push(RESULT);\n\t\t\t\treturn;\n\t\t\t}";
             fileContent += casePopPush;
         }

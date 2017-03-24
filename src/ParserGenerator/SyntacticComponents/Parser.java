@@ -76,12 +76,12 @@ public class Parser {
         Token nonterminal_id = _currentToken;
         GoToNextToken();
         if (_currentToken.Type != TokenTypes.SYM_PRODUCTION){
-            throw new SyntacticException("Expected colon_colon_equals token", nonterminal_id.Row);
+            throw new SyntacticException("Expected colon_colon_equals token row: " + nonterminal_id.Row + " column: " + nonterminal_id.Column);
         }
         GoToNextToken();
         ArrayList<RightHandSideNode> rightHandSideList = rhs_list(nonterminal_id.Row);
         if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
-            throw new SyntacticException("Expected semicolon token", nonterminal_id.Row);
+            throw new SyntacticException("Expected semicolon token row:" + nonterminal_id.Row + " column: " + nonterminal_id.Column);
         }
         GoToNextToken();
 
@@ -185,6 +185,14 @@ public class Parser {
                 GoToNextToken();
                 return new TerminalDeclarationNode(multiPart, declaresTerm);
             }
+            else if (nextToken.Type == TokenTypes.SYM_SEMICOLON){
+                ArrayList<Token> multiPart = null;
+                ArrayList<Token> declaresTerm = new ArrayList<>();
+                declaresTerm.add(_currentToken);
+                GoToNextToken();
+                GoToNextToken();
+                return new TerminalDeclarationNode(multiPart, declaresTerm);
+            }
             else if (nextToken.Type == TokenTypes.SYM_COMMA){
                 ArrayList<Token> declaresTerm = declares_term();
                 if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
@@ -234,6 +242,14 @@ public class Parser {
                 if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
                     throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
                 }
+                GoToNextToken();
+                return new NonTerminalDeclarationNode(multiPart, declaresTerm);
+            }
+            else if (nextToken.Type == TokenTypes.SYM_SEMICOLON){
+                ArrayList<Token> multiPart = null;
+                ArrayList<Token> declaresTerm = new ArrayList<>();
+                declaresTerm.add(_currentToken);
+                GoToNextToken();
                 GoToNextToken();
                 return new NonTerminalDeclarationNode(multiPart, declaresTerm);
             }
@@ -288,6 +304,14 @@ public class Parser {
                     if (_currentToken.Type != TokenTypes.SYM_SEMICOLON){
                         throw new SyntacticException("Expected semicolon token" + "\nRow: " + _currentToken.Row + "\nColumn:" + _currentToken.Column);
                     }
+                    GoToNextToken();
+                    return new NonTerminalDeclarationNode(multiPart, declaresTerm);
+                }
+                else if (nextToken.Type == TokenTypes.SYM_SEMICOLON){
+                    ArrayList<Token> multiPart = null;
+                    ArrayList<Token> declaresTerm = new ArrayList<>();
+                    declaresTerm.add(_currentToken);
+                    GoToNextToken();
                     GoToNextToken();
                     return new NonTerminalDeclarationNode(multiPart, declaresTerm);
                 }

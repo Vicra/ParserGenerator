@@ -49,8 +49,8 @@ public class GrammarUtilies {
     }
 
     private static ArrayList<RightHandSideNode> orderProductions(String name, ArrayList<RightHandSideNode> rightHandSideNodeList) {
-        Integer i = 0;
-        Integer j = 0;
+        int i = 0;
+        int j = 0;
 
         while (i < rightHandSideNodeList.size()) {
             while (j < rightHandSideNodeList.get(i).ProductionParts.size()) {
@@ -70,6 +70,9 @@ public class GrammarUtilies {
                     } else {
                         j++;
                     }
+                }
+                else{
+                    j++;
                 }
             }
             i++;
@@ -117,8 +120,10 @@ public class GrammarUtilies {
                         if (((SymbolPart) rightHandSideNode.ProductionParts.get(i)).LeftLabel != null) {
                             toAdd.add(((SymbolPart) rightHandSideNode.ProductionParts.get(i)).LeftLabel.Lexeme);
                             if (((SymbolPart) rightHandSideNode.ProductionParts.get(i)).LeftLabel.Lexeme != null) {
-                                labelList.add(new Label(((SymbolPart) rightHandSideNode.ProductionParts.get(i)).LeftLabel.Lexeme,
-                                        typeTable.get(((SymbolPart) rightHandSideNode.ProductionParts.get(i)).LeftLabel.Lexeme), i));
+                                if (((SymbolPart) rightHandSideNode.ProductionParts.get(i)).RightOptionalLabel != null){
+                                    labelList.add(new Label(((SymbolPart) rightHandSideNode.ProductionParts.get(i)).RightOptionalLabel.Lexeme,
+                                            typeTable.get(((SymbolPart) rightHandSideNode.ProductionParts.get(i)).LeftLabel.Lexeme), i));
+                                }
                             }
                         }
                     } else {
