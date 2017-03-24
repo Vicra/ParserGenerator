@@ -11,16 +11,16 @@ import java.util.ArrayList;
 public class ParserFileGeneration {
     public static void generate(RowSortedTable<String, String, String> table, ArrayList<GrammarDetail> productionDetails, ArrayList<ImportStatementNode> importList) throws FileNotFoundException, UnsupportedEncodingException {
 
-        String top = "import Tree.*;\n";
+        String top = "";
         String bottom = "";
         String fileContent = "";
         for (ImportStatementNode importStatementNode : importList) {
             fileContent += "import ";
             for (Integer i = 0; i < importStatementNode.ImportIdentifiers.size(); i++) {
                 if (i == importStatementNode.ImportIdentifiers.size() - 1) {
-                    fileContent += importStatementNode.ImportIdentifiers.get(i);
+                    fileContent += importStatementNode.ImportIdentifiers.get(i).Lexeme;
                 } else {
-                    fileContent += importStatementNode.ImportIdentifiers.get(i) + ".";
+                    fileContent += importStatementNode.ImportIdentifiers.get(i).Lexeme + ".";
                 }
             }
             fileContent += ";\n";
